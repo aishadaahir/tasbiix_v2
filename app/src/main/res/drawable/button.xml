@@ -4,6 +4,6 @@
     <corners
         android:radius="400dp"
         />
-    <solid android:color="@color/clock"/>
-    <stroke android:width="3dp"  android:color="@color/clock"/>
+<!--    <solid android:color="@color/clock"/>-->
+    <stroke android:width="3dp" />
 </shape>
