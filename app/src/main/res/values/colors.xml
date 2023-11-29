@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+
+    <color name="purple_200">#FFBB86FC</color>
+    <color name="purple_500">#FF6200EE</color>
+    <color name="purple_700">#FF3700B3</color>
+    <color name="teal_200">#FF03DAC5</color>
+    <color name="teal_700">#FF018786</color>
+    <color name="colorPrimary">#2F63FD</color>
+    <color name="appPrimary">#0d8ef9</color>
+    <color name="back">#d2ddef</color>
+    <color name="prime">#0d8ef9</color>
+    <color name="dback">#ffeeec</color>
+    <color name="dtext">#ff3e83</color>
+
+    <color name="lback">#fff6e5</color>
+    <color name="ltext">#ff8024</color>
+
+    <color name="pback">#e5edfd</color>
+    <color name="ptext">#1d7caa</color>
+    <color name="pageback">#f7f5ff</color>
+
+    <color name="line_gray">#C3C7D3</color>
+    <color name="line_text">#dff4f9</color>
+    <color name="tabcolor">#5facec</color>
+    <color name="complete">#00ca99</color>
+    <color name="dateindicate">#ffe3f4</color>
+    <color name="prime2">#FFFFFF</color>
+    <color name="clock">#67EA5A</color>
+
+
+</resources>
