@@ -1,5 +1,6 @@
 package com.example.android.version2;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
@@ -36,6 +37,7 @@ public class BaseActivity extends AppCompatActivity {
         if(sharedPreferences.getBoolean(THEME_KEY, false)!=isDarkThemeEnabled){
             editor.putBoolean(THEME_KEY, isDarkThemeEnabled);
             editor.apply();
+            startActivity(new Intent(getApplicationContext(), datalist.class));
             recreate();
         }
 
