@@ -8,7 +8,7 @@
     android:layout_height="wrap_content"
     android:layout_margin="15sp"
     android:layout_marginStart="15dp"
-    app:theme="@style/AppTheme.NoActionBar.colorContainer"
+    android:background="@drawable/rounded"
     android:elevation="2sp"
     android:orientation="horizontal">
 
@@ -26,7 +26,6 @@
             android:id="@+id/Name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textColor="#000000"
             android:textSize="16sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -41,7 +40,6 @@
             android:layout_marginBottom="8dp"
             android:ellipsize="end"
             android:maxLines="1"
-            android:textColor="#000000"
             android:textSize="16sp"
             app:layout_constraintBottom_toTopOf="@+id/lap"
             app:layout_constraintStart_toEndOf="@+id/Accountnum"
@@ -55,7 +53,6 @@
             android:layout_marginBottom="8dp"
             android:ellipsize="end"
             android:maxLines="1"
-            android:textColor="#000000"
             android:textSize="16sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toEndOf="@+id/accountnum" />
@@ -67,7 +64,6 @@
             android:layout_marginStart="16dp"
             android:layout_marginTop="24dp"
             android:ems="10"
-            android:textColor="#000000"
             android:textSize="16sp"
             app:layout_constraintBottom_toTopOf="@+id/accountnum"
             app:layout_constraintStart_toStartOf="parent"
@@ -82,7 +78,6 @@
             android:layout_marginTop="8dp"
             android:layout_marginBottom="8dp"
             android:ems="10"
-            android:textColor="#000000"
             android:textSize="16sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -101,7 +96,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@android:drawable/ic_menu_delete"
-            app:tint="#0D8AF5" />
+            app:tint="?attr/buttons_imgview" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </LinearLayout>

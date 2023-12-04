@@ -22,9 +22,9 @@ public class BaseActivity extends AppCompatActivity {
         isDarkThemeEnabled = sharedPreferences.getBoolean(THEME_KEY, false);
 
         if (isDarkThemeEnabled) {
-            setTheme(R.style.AppTheme_NoActionBar);
+            setTheme(R.style.AppTheme_NoActionBar_light);
         } else {
-            setTheme(R.style.AppTheme_blue_NoActionBar);
+            setTheme(R.style.AppTheme_NoActionBar_dark);
         }
     }
 
@@ -37,7 +37,7 @@ public class BaseActivity extends AppCompatActivity {
         if(sharedPreferences.getBoolean(THEME_KEY, false)!=isDarkThemeEnabled){
             editor.putBoolean(THEME_KEY, isDarkThemeEnabled);
             editor.apply();
-            startActivity(new Intent(getApplicationContext(), datalist.class));
+            startActivity(new Intent(getApplicationContext(), version2list.class));
             recreate();
         }
 

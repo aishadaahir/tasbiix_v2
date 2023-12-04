@@ -17,7 +17,7 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 
-public class version2list extends AppCompatActivity {
+public class version2list extends BaseActivity {
 
     ImageButton back,imageButton;
     routinedata myDB;

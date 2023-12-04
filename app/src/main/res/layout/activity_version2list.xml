@@ -24,7 +24,7 @@
             android:contentDescription="TODO"
             app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="?attr/homeAsUpIndicator"
-            app:tint="@color/black"
+            app:tint="?attr/buttons_imgview"
             tools:ignore="DuplicateIds,MissingConstraints"
             tools:layout_editor_absoluteX="1dp" />
 
@@ -47,6 +47,7 @@
             style="@android:style/Widget.Material.Light.SearchView"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
+            app:searchIcon="@drawable/custom_search_icon"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/sort"
             app:layout_constraintTop_toTopOf="parent" />
@@ -61,7 +62,7 @@
             app:layout_constraintEnd_toStartOf="@+id/imageButton"
             app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@android:drawable/ic_menu_sort_by_size"
-            app:tint="@color/black"
+            app:tint="?attr/buttons_imgview"
             tools:ignore="DuplicateIds,MissingConstraints" />
 
         <ImageButton
@@ -74,7 +75,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@drawable/menu_icon"
-            app:tint="@color/black" />
+            app:tint="?attr/buttons_imgview" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
