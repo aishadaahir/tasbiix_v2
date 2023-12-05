@@ -85,7 +85,7 @@
             tools:text="Lap" />
 
         <ImageButton
-            android:id="@+id/AddId"
+            android:id="@+id/delete"
             android:layout_width="45dp"
             android:layout_height="47dp"
             android:layout_marginTop="16dp"

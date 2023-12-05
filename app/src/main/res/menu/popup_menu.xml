@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
-        android:id="@+id/profile"
-        android:title="Profile" />
+        android:id="@+id/asc"
+        android:title="Ascending Order" />
 
     <item
-        android:id="@+id/share"
-        android:title="Share app" />
+        android:id="@+id/desc"
+        android:title="Descending Order" />
 </menu>

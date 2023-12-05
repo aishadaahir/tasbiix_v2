@@ -2,4 +2,5 @@
 <resources>
     <attr name="containers" format="color" />
     <attr name="buttons_imgview" format="color" />
+    <attr name="dailog" format="color" />
 </resources>

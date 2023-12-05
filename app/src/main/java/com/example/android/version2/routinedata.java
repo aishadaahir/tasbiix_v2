@@ -13,6 +13,7 @@ public class routinedata extends SQLiteOpenHelper {
     public static final String COL1 = "count";
     public static final String COL2 = "lap";
     public static final String COL3 = "title";
+    public static final String COL4 = "ID";
 
 
 
@@ -22,9 +23,10 @@ public class routinedata extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        String createTable = "CREATE TABLE " + TABLE_NAME + " ( count TEXT, " +
+        String createTable = "CREATE TABLE " + TABLE_NAME + " ( ID INTEGER PRIMARY KEY AUTOINCREMENT, " +
                 " lap TEXT ,"+
-                " title TEXT)";
+                " title TEXT ,"+
+                " count TEXT)";
         db.execSQL(createTable);
     }
 
@@ -44,12 +46,12 @@ public class routinedata extends SQLiteOpenHelper {
         contentValues2.put(COL3, "الله أكبر");
 
         ContentValues contentValues3 = new ContentValues();
-        contentValues3.put(COL1, "33");
-        contentValues3.put(COL2, "1");
+        contentValues3.put(COL1, "50");
+        contentValues3.put(COL2, "2");
         contentValues3.put(COL3, "سبحان الله");
 
         ContentValues contentValues4 = new ContentValues();
-        contentValues4.put(COL1, "33");
+        contentValues4.put(COL1, "99");
         contentValues4.put(COL2, "1");
         contentValues4.put(COL3, "استغفر الله");
 
@@ -87,9 +89,9 @@ public class routinedata extends SQLiteOpenHelper {
 
     public Cursor readsearch(String searchKeyword){
 
-        String query = "SELECT * FROM " + TABLE_NAME+" WHERE "+COL1+" LIKE ? OR "+COL2+" LIKE ?";
+        String query = "SELECT * FROM " + TABLE_NAME+" WHERE "+COL1+" LIKE ? OR "+COL2+" LIKE ? OR "+COL3+" LIKE ?";
         SQLiteDatabase db = this.getReadableDatabase();
-        String[] searchArgs = {"%" + searchKeyword + "%", "%" + searchKeyword + "%"};
+        String[] searchArgs = {"%" + searchKeyword + "%", "%" + searchKeyword + "%", "%" + searchKeyword + "%"};
 
 
         Cursor cursor = null;
@@ -101,6 +103,16 @@ public class routinedata extends SQLiteOpenHelper {
 
     public Cursor readAllData(){
         String query = "SELECT * FROM " + TABLE_NAME;
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        Cursor cursor = null;
+        if(db != null){
+            cursor = db.rawQuery(query, null);
+        }
+        return cursor;
+    }
+    public Cursor readAllData_inorder(String value){
+        String query = "SELECT * FROM " + TABLE_NAME+ " ORDER BY LOWER(title) "+value;
         SQLiteDatabase db = this.getReadableDatabase();
 
         Cursor cursor = null;

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <item name="imageButton" type="id" />
+    <item name="sort" type="id" />
+    <item name="search" type="id" />
+    <item name="back" type="id" />
+    <item name="constraintLayout2" type="id" />
+    <item name="button" type="id" />
+    <item name="button2" type="id" />
+    <item name="tton33" type="id" />
+    <item name="rcyview" type="id" />
+    <item name="holder" type="id" />
+    <item name="constraintLayout" type="id" />
+    <item name="textViewCount" type="id" />
+    <item name="textView1" type="id" />
+    <item name="textView2" type="id" />
+    <item name="textView3" type="id" />
+    <item name="textView4" type="id" />
+    <item name="resets" type="id" />
+    <item name="update" type="id" />
+    <item name="count" type="id" />
+    <item name="date" type="id" />
+    <item name="date2" type="id" />
+    <item name="notelayout" type="id" />
+    <item name="Name" type="id" />
+    <item name="lap" type="id" />
+    <item name="counts" type="id" />
+    <item name="Accountnum" type="id" />
+    <item name="accountnum" type="id" />
+    <item name="AddId" type="id" />
+    <item name="textView" type="id" />
+    <item name="save" type="id" />
+    <item name="cancel" type="id" />
+    <item name="accountnum2" type="id" />
+    <item name="constraintLayout3" type="id" />
+    <item name="textView5" type="id" />
+    <item name="Count" type="id" />
+</resources>

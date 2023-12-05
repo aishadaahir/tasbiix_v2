@@ -1,6 +1,7 @@
 package com.example.android.version2;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
@@ -8,6 +9,7 @@ import android.os.Build;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -47,7 +49,15 @@ public class RoutineAdapter extends RecyclerView.Adapter<RoutineAdapter.MyViewHo
         holder.lap.setText(String.valueOf(lap.get(position)));
         holder.Accountnum.setText("Count");
         holder.accountnum.setText("Lap");
-
+//        holder.delete.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                Intent intent = new Intent(context, version2list.class);
+//                intent.putExtra("ID", String.valueOf(Id.get(position)));
+//
+//                ItemClicklistner.onItem(position,intent);
+//            }
+//        });
 
     }
 
@@ -70,6 +80,9 @@ public class RoutineAdapter extends RecyclerView.Adapter<RoutineAdapter.MyViewHo
         return Color.argb(105, random.nextInt(100), random.nextInt(100), random.nextInt(100));
     }
 
+    public interface ItemClicklistner {
+        void onItem(int position, Intent intent);
+    }
     @Override
     public int getItemCount() {
         return Name.size();
@@ -79,6 +92,7 @@ public class RoutineAdapter extends RecyclerView.Adapter<RoutineAdapter.MyViewHo
     class MyViewHolder extends RecyclerView.ViewHolder {
 
         TextView lap,counts,Name,accountnum,Accountnum;
+        ImageView delete;
         MyViewHolder(@NonNull View itemView) {
             super(itemView);
             lap = itemView.findViewById(R.id.lap);
@@ -86,6 +100,7 @@ public class RoutineAdapter extends RecyclerView.Adapter<RoutineAdapter.MyViewHo
             Name = itemView.findViewById(R.id.Name);
             Accountnum = itemView.findViewById(R.id.Accountnum);
             accountnum = itemView.findViewById(R.id.accountnum);
+            delete = itemView.findViewById(R.id.delete);
 
 
         }
