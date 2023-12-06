@@ -4,6 +4,6 @@
     <corners
         android:radius="400dp"
         />
-<!--    <solid android:color="@color/clock"/>-->
+    <solid android:color="?attr/buttons_imgview"/>
     <stroke android:width="3dp" />
 </shape>

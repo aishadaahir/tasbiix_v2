@@ -34,7 +34,7 @@ public class datalist extends BaseActivity {
         storeDataInArrays();
         getData();
 
-        back = findViewById(R.id.tton33);
+        back = findViewById(R.id.back);
 
         back.setOnClickListener(new View.OnClickListener() {
             @Override

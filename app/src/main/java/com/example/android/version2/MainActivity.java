@@ -20,10 +20,12 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
 import android.view.KeyEvent;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.PopupMenu;
 import android.widget.TextView;
 //import com.example.tasbiix.NotificationReceiver;
 
@@ -38,8 +40,8 @@ import java.util.Locale;
 
 public class MainActivity extends BaseActivity {
     static datedata myDB;
-    static TextView textViewCount,t1,t2,t3,t4,t5;
-    ImageView back,update,resets,add;
+    static TextView textViewCount,t1,t2,t3,t4,titles;
+    ImageView menus,update,resets,add;
     private static int count = 0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,22 +54,60 @@ public class MainActivity extends BaseActivity {
         t4 = findViewById(R.id.textView4);
         myDB = new datedata(MainActivity.this);
         resets = findViewById(R.id.resets);
-        back = findViewById(R.id.back);
+        menus = findViewById(R.id.menus);
+        titles = findViewById(R.id.titles);
         update = findViewById(R.id.update);
         add = findViewById(R.id.add);
 
 //        start();
 //        scheduleNotification();
-        back.setOnClickListener(new View.OnClickListener() {
+//        back.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+////                start();
+////                sendNotification ("if this works i will be very happy", "yaa allaah" );
+//                // Get the time at which you want to send the notification
+//                startActivity(new Intent(getApplicationContext(), datalist.class));
+//                overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
+//            }
+//        });
+
+        menus.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                start();
-//                sendNotification ("if this works i will be very happy", "yaa allaah" );
-                // Get the time at which you want to send the notification
-                startActivity(new Intent(getApplicationContext(), datalist.class));
-                overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
+                PopupMenu popupMenu = new PopupMenu(MainActivity.this, menus);
+
+                // Inflating popup menu from popup_menu.xml file
+                popupMenu.getMenuInflater().inflate(R.menu.popup_setting, popupMenu.getMenu());
+                popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+                    @Override
+                    public boolean onMenuItemClick(MenuItem menuItem) {
+                        // Toast message on menu item clicked
+                        int itemId = menuItem.getItemId();
+                        if (itemId == R.id.routine) {
+                            startActivity(new Intent(getApplicationContext(), version2list.class));
+                            overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
+                            return true;
+                        } else if (itemId == R.id.history) {
+                            startActivity(new Intent(getApplicationContext(), datalist.class));
+                            overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
+                            return true;
+                        }else if (itemId == R.id.setting) {
+                            startActivity(new Intent(getApplicationContext(), ColorActivity.class));
+                            overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
+                            return true;
+                        }
+                        // Add conditions for other menu items as needed
+                        return false;
+
+                    }
+                });
+                // Showing the popup menu
+                popupMenu.show();
             }
+
         });
+
         update.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -124,7 +164,7 @@ public class MainActivity extends BaseActivity {
                 // Create a date format
                 SimpleDateFormat dateFormat = new SimpleDateFormat("EEE,dd/MM/yyyy HH:mm:ss", Locale.getDefault());
                 String formattedDate = dateFormat.format(currentDate);
-                myDB.addData(String.valueOf(count),formattedDate,"reset");
+                myDB.addData(String.valueOf(count),formattedDate,"reset",titles.getText().toString());
                 count=0;
                 @SuppressLint("DefaultLocale") String countString = String.format("%05d", count);
                 textViewCount.setText(String.valueOf(countString.charAt(4)));
@@ -144,7 +184,7 @@ public class MainActivity extends BaseActivity {
 
             SimpleDateFormat dateFormat = new SimpleDateFormat("EEE,dd/MM/yyyy HH:mm:ss", Locale.getDefault());
             String formattedDate = dateFormat.format(currentDate);
-            myDB.addData(String.valueOf(count),formattedDate,"congrats");
+            myDB.addData(String.valueOf(count),formattedDate,"congrats",titles.getText().toString());
             count=0;
             @SuppressLint("DefaultLocale") String countString = String.format("%05d", count);
             textViewCount.setText(String.valueOf(countString.charAt(4)));
@@ -197,7 +237,7 @@ public class MainActivity extends BaseActivity {
         // Create a date format
         SimpleDateFormat dateFormat = new SimpleDateFormat("EEE,dd/MM/yyyy HH:mm:ss", Locale.getDefault());
         String formattedDate = dateFormat.format(currentDate);
-        myDB.addData(String.valueOf(count),formattedDate,"24h reset");
+        myDB.addData(String.valueOf(count),formattedDate,"24h reset",formattedDate);
         count=0;
         @SuppressLint("DefaultLocale") String countString = String.format("%05d", count);
         textViewCount.setText(String.valueOf(countString.charAt(4)));

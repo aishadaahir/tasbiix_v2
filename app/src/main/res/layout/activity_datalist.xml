@@ -1,50 +1,85 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
 xmlns:app="http://schemas.android.com/apk/res-auto"
 xmlns:tools="http://schemas.android.com/tools"
 android:layout_width="match_parent"
 android:layout_height="match_parent"
-android:orientation="vertical"
-tools:context=".datalist">
+tools:context=".datalist"
+tools:ignore="MissingDefaultResource">
 
-<androidx.constraintlayout.widget.ConstraintLayout
+<LinearLayout
+    android:id="@+id/constraintLayout2"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="#FFFFFF">
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toTopOf="parent"
+    android:elevation="8dp"
+    android:orientation="horizontal">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/constraintLayout2"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="#FFFFFF"
+
+    <ImageButton
+        android:id="@+id/back"
+        android:layout_width="79dp"
+        android:layout_height="52dp"
+        android:backgroundTint="#00FFFFFF"
+        android:contentDescription="TODO"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="?attr/homeAsUpIndicator"
+        app:tint="?attr/buttons_imgview"
+        tools:ignore="DuplicateIds,MissingConstraints"
+        tools:layout_editor_absoluteX="1dp" />
+
+
+    <TextView
+        android:id="@+id/title"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_marginStart="11dp"
+        android:gravity="center"
+        android:text="routine list"
+        android:textAlignment="center"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/back"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+    <SearchView
+        android:id="@+id/search"
+        style="@style/SearchViewTheme"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_marginStart="40dp"
+        android:queryHint="search"
+        app:iconifiedByDefault="false"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/sort"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+    <ImageButton
+        android:id="@+id/sort"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:backgroundTint="#00FFFFFF"
+        android:contentDescription="TODO"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/sort"
+        app:tint="?attr/buttons_imgview" />
 
 
-        <ImageButton
-            android:id="@+id/tton33"
-            android:layout_width="79dp"
-            android:layout_height="52dp"
-            android:backgroundTint="#00FFFFFF"
-            android:contentDescription="TODO"
-            android:rotationY="180"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="?attr/homeAsUpIndicator"
-            app:tint="@color/black"
-            tools:ignore="DuplicateIds,MissingConstraints" />
+</LinearLayout>
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rcyview"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/constraintLayout2" />
+<androidx.recyclerview.widget.RecyclerView
+    android:id="@+id/rcyview"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toBottomOf="@+id/constraintLayout2" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
-</ScrollView>

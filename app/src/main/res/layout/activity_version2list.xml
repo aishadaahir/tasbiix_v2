@@ -58,7 +58,6 @@
             app:layout_constraintTop_toTopOf="parent" />
 
 
-
         <ImageButton
             android:id="@+id/add"
             android:layout_width="56dp"

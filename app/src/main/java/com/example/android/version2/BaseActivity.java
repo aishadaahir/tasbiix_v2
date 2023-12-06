@@ -37,7 +37,7 @@ public class BaseActivity extends AppCompatActivity {
         if(sharedPreferences.getBoolean(THEME_KEY, false)!=isDarkThemeEnabled){
             editor.putBoolean(THEME_KEY, isDarkThemeEnabled);
             editor.apply();
-            startActivity(new Intent(getApplicationContext(), version2list.class));
+            startActivity(new Intent(getApplicationContext(), MainActivity.class));
             recreate();
         }
 

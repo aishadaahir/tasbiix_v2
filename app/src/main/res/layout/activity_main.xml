@@ -11,23 +11,22 @@
         android:id="@+id/constraintLayout2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#FFFFFF"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
 
         <ImageButton
-            android:id="@+id/back"
+            android:id="@+id/menus"
             android:layout_width="79dp"
             android:layout_height="52dp"
             android:backgroundTint="#00FFFFFF"
             android:contentDescription="TODO"
-            android:rotationY="180"
+            android:scaleType="fitCenter"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="?attr/homeAsUpIndicator"
-            app:tint="@color/black"
+            app:srcCompat="@drawable/menu_icon"
+            app:tint="?attr/buttons_imgview"
             tools:ignore="DuplicateIds,MissingConstraints" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -38,7 +37,6 @@
         android:layout_marginStart="40dp"
         android:layout_marginTop="100dp"
         android:layout_marginEnd="40dp"
-        android:background="@drawable/shape"
         android:scaleType="fitCenter"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -64,7 +62,6 @@
                 android:fontFamily="@font/regular"
                 android:gravity="center"
                 android:text="0"
-                android:textColor="#000000"
                 android:textAlignment="center"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -78,7 +75,6 @@
                 android:fontFamily="@font/regular"
                 android:gravity="center"
                 android:text="0"
-                android:textColor="#000000"
                 android:textAlignment="center"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@+id/textViewCount"
@@ -92,7 +88,6 @@
                 android:fontFamily="@font/regular"
                 android:gravity="center"
                 android:text="0"
-                android:textColor="#000000"
                 android:textAlignment="center"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@+id/textView1"
@@ -106,7 +101,6 @@
                 android:fontFamily="@font/regular"
                 android:gravity="center"
                 android:text="0"
-                android:textColor="#000000"
                 android:textAlignment="center"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@+id/textView2"
@@ -120,7 +114,6 @@
                 android:fontFamily="@font/regular"
                 android:gravity="center"
                 android:text="0"
-                android:textColor="#000000"
                 android:textAlignment="center"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@+id/textView3"
@@ -159,7 +152,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/constraintLayout"
             app:srcCompat="@drawable/reset"
-            app:tint="@color/black"
+            app:tint="?attr/buttons_imgview"
             tools:ignore="DuplicateIds,MissingConstraints" />
 
         <ImageButton
@@ -172,11 +165,22 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/resets"
             app:layout_constraintTop_toBottomOf="@+id/constraintLayout"
-            app:srcCompat="@android:drawable/ic_menu_edit"
-            app:tint="@color/black"
+            app:srcCompat="@drawable/baseline_edit_note_24"
+            app:tint="?attr/buttons_imgview"
             tools:ignore="DuplicateIds,MissingConstraints" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
+    <TextView
+        android:id="@+id/titles"
+        android:layout_width="58dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="63dp"
+        android:layout_marginBottom="18dp"
+        android:text="No Title"
+        app:layout_constraintBottom_toTopOf="@+id/holder"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/constraintLayout2" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

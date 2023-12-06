@@ -122,6 +122,15 @@ public class routinedata extends SQLiteOpenHelper {
         return cursor;
     }
 
+    public boolean deleteRoutine(String id){
+        SQLiteDatabase db = this.getWritableDatabase();
+        long result = db.delete(TABLE_NAME, "ID=?", new String[]{id});
+        if (result == -1) {
+            return false;
+        } else {
+            return true;
+        }
+    }
 
     public boolean delete(){
         SQLiteDatabase db = this.getWritableDatabase();

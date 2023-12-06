@@ -1,9 +1,9 @@
 package com.example.android.version2;
 
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.annotation.SuppressLint;
 import android.app.Dialog;
 import android.app.SearchManager;
 import android.content.Intent;
@@ -13,12 +13,14 @@ import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
+import android.widget.AutoCompleteTextView;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageButton;
-import android.widget.ImageView;
 import android.widget.PopupMenu;
 import android.widget.SearchView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.material.textfield.TextInputEditText;
 
@@ -31,7 +33,7 @@ public class version2list extends BaseActivity {
     RoutineAdapter Adapter;
     RecyclerView recyclerView;
 //    ImageView back;
-    ArrayList<String> lap,counts,Name;
+    ArrayList<String> id,lap,counts,Name;
     SearchView searchView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,15 +44,14 @@ public class version2list extends BaseActivity {
 
         myDB = new routinedata(version2list.this);
 
+        id = new ArrayList<>();
         lap = new ArrayList<>();
         counts = new ArrayList<>();
         Name = new ArrayList<>();
         storeDataInArrays();
         getData();
-
         searchView = findViewById(R.id.search);
-        SearchManager searchManager = (SearchManager) getSystemService(SEARCH_SERVICE);
-        searchView.setSearchableInfo(searchManager.getSearchableInfo(getComponentName()));
+
 
         back = findViewById(R.id.back);
         sort = findViewById(R.id.sort);
@@ -58,7 +59,7 @@ public class version2list extends BaseActivity {
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(getApplicationContext(), ColorActivity.class));
+                startActivity(new Intent(getApplicationContext(), MainActivity.class));
                 overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
             }
         });
@@ -92,6 +93,7 @@ public class version2list extends BaseActivity {
                     @Override
                     public void onClick(View v) {
                         myDB.addData(count.getText().toString(),laps.getText().toString(),title.getText().toString());
+                        id = new ArrayList<>();
                         lap = new ArrayList<>();
                         counts = new ArrayList<>();
                         Name = new ArrayList<>();
@@ -125,6 +127,7 @@ public class version2list extends BaseActivity {
                         // Toast message on menu item clicked
                         int itemId = menuItem.getItemId();
                         if (itemId == R.id.asc) {
+                            id = new ArrayList<>();
                             lap = new ArrayList<>();
                             counts = new ArrayList<>();
                             Name = new ArrayList<>();
@@ -133,7 +136,7 @@ public class version2list extends BaseActivity {
 
                             return true;
                         } else if (itemId == R.id.desc) {
-                            lap = new ArrayList<>();
+                            id = new ArrayList<>();
                             counts = new ArrayList<>();
                             Name = new ArrayList<>();
                             storeDataInArraysorder("DESC");
@@ -154,6 +157,7 @@ public class version2list extends BaseActivity {
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
+                id = new ArrayList<>();
                 lap = new ArrayList<>();
                 counts = new ArrayList<>();
                 Name = new ArrayList<>();
@@ -164,6 +168,7 @@ public class version2list extends BaseActivity {
 
             @Override
             public boolean onQueryTextChange(String newText) {
+                id = new ArrayList<>();
                 lap = new ArrayList<>();
                 counts = new ArrayList<>();
                 Name = new ArrayList<>();
@@ -177,7 +182,25 @@ public class version2list extends BaseActivity {
 
     private void getData() {
 
-        Adapter = new RoutineAdapter(version2list.this,lap,counts,Name);
+        Adapter = new RoutineAdapter(version2list.this,id,lap,counts,Name,new RoutineAdapter.ItemClicklistner() {
+            @SuppressLint("NotifyDataSetChanged")
+            @Override
+            public void onItem(int position, Intent intent) {
+                String ID = intent.getExtras().getString("ID");
+                myDB.deleteRoutine(ID);
+                Toast.makeText(version2list.this, "Routine removed from list", Toast.LENGTH_SHORT).show();
+                Adapter.notifyDataSetChanged();
+                id = new ArrayList<>();
+                lap = new ArrayList<>();
+                counts = new ArrayList<>();
+                Name = new ArrayList<>();
+                storeDataInArrays();
+                getData();
+
+
+            }
+
+        });
         recyclerView.setAdapter(Adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(version2list.this));
     }
@@ -192,6 +215,7 @@ public class version2list extends BaseActivity {
             storeDataInArrays();
         }else{
             while (cursor.moveToNext()){
+                id.add(cursor.getString(0));
                 counts.add(cursor.getString(3));
                 lap.add(cursor.getString(1));
                 Name.add(cursor.getString(2));
@@ -209,6 +233,7 @@ public class version2list extends BaseActivity {
 
         }else{
             while (cursor.moveToNext()){
+                id.add(cursor.getString(0));
                 counts.add(cursor.getString(3));
                 lap.add(cursor.getString(1));
                 Name.add(cursor.getString(2));
@@ -226,6 +251,7 @@ public class version2list extends BaseActivity {
 
         }else{
             while (cursor.moveToNext()){
+                id.add(cursor.getString(0));
                 counts.add(cursor.getString(3));
                 lap.add(cursor.getString(1));
                 Name.add(cursor.getString(2));

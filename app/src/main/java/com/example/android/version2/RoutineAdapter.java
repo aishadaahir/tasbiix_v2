@@ -1,5 +1,6 @@
 package com.example.android.version2;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.ColorStateList;
@@ -22,14 +23,16 @@ import java.util.Random;
 
 public class RoutineAdapter extends RecyclerView.Adapter<RoutineAdapter.MyViewHolder> {
     private Context context;
-    private ArrayList lap,counts,Name;
+    private ArrayList id,lap,counts,Name;
 
-
-    public RoutineAdapter(Context context,ArrayList lap,ArrayList counts,ArrayList Name){
+    ItemClicklistner ItemClicklistner;
+    public RoutineAdapter(Context context, ArrayList id, ArrayList lap, ArrayList counts, ArrayList Name, ItemClicklistner ItemClicklistner){
         this.context = context;
+        this.id = id;
         this.lap = lap;
         this.counts = counts;
         this.Name = Name;
+        this.ItemClicklistner = ItemClicklistner;
 
     }
 
@@ -49,15 +52,16 @@ public class RoutineAdapter extends RecyclerView.Adapter<RoutineAdapter.MyViewHo
         holder.lap.setText(String.valueOf(lap.get(position)));
         holder.Accountnum.setText("Count");
         holder.accountnum.setText("Lap");
-//        holder.delete.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                Intent intent = new Intent(context, version2list.class);
-//                intent.putExtra("ID", String.valueOf(Id.get(position)));
-//
-//                ItemClicklistner.onItem(position,intent);
-//            }
-//        });
+
+        holder.delete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(context, version2list.class);
+                intent.putExtra("ID", String.valueOf(id.get(position)));
+
+                ItemClicklistner.onItem(position,intent);
+            }
+        });
 
     }
 
@@ -81,11 +85,11 @@ public class RoutineAdapter extends RecyclerView.Adapter<RoutineAdapter.MyViewHo
     }
 
     public interface ItemClicklistner {
-        void onItem(int position, Intent intent);
+        void onItem(int position,Intent intent);
     }
     @Override
     public int getItemCount() {
-        return Name.size();
+        return id.size();
     }
 
 

@@ -64,6 +64,16 @@ android:orientation="vertical">
         app:tint="@color/black"
         tools:text="dfdgdfgfdgdfgf" />
 
+    <View
+        android:id="@+id/v1"
+        android:layout_width="262dp"
+        android:layout_height="1dp"
+        android:background="@color/white"
+        app:layout_constraintTop_toBottomOf="@+id/title"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/accountnum2"
+        tools:layout_editor_absoluteX="124dp" />
+
     <TextView
         android:id="@+id/Accountnum"
         android:layout_width="84dp"
@@ -93,6 +103,17 @@ android:orientation="vertical">
         app:tint="@color/black"
         tools:text="rgeds" />
 
+    <View
+        android:id="@+id/v2"
+        android:layout_width="262dp"
+        android:layout_height="1dp"
+        android:layout_marginTop="1dp"
+        android:background="@color/white"
+        app:layout_constraintTop_toBottomOf="@+id/Count"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/Accountnum"
+        tools:layout_editor_absoluteX="124dp" />
+
     <TextView
         android:id="@+id/accountnum"
         android:layout_width="84dp"
@@ -121,6 +142,15 @@ android:orientation="vertical">
         app:tint="@color/black"
         tools:text="dfvg" />
 
+    <View
+        android:id="@+id/v3"
+        android:layout_width="262dp"
+        android:layout_height="1dp"
+        android:background="@color/white"
+        app:layout_constraintTop_toBottomOf="@+id/lap"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/accountnum"
+        tools:layout_editor_absoluteX="124dp" />
 
     <Button
         android:id="@+id/cancel"
@@ -128,6 +158,7 @@ android:orientation="vertical">
         android:layout_height="44dp"
         android:layout_marginTop="24dp"
         android:layout_marginBottom="8dp"
+        android:elevation="0dp"
         android:text="cancel"
         android:textSize="16sp"
         android:textStyle="bold"

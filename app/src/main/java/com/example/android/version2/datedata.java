@@ -14,6 +14,7 @@ public class datedata extends SQLiteOpenHelper {
     public static final String COL1 = "count";
     public static final String COL2 = "date";
     public static final String COL3 = "type";
+    public static final String COL4 = "title";
 
 
 
@@ -26,7 +27,8 @@ public class datedata extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db) {
         String createTable = "CREATE TABLE " + TABLE_NAME + " ( count TEXT, " +
                 " date TEXT ,"+
-                " type TEXT)";
+                " type TEXT ,"+
+                " title TEXT)";
         db.execSQL(createTable);
     }
 
@@ -36,12 +38,13 @@ public class datedata extends SQLiteOpenHelper {
         onCreate(db);
     }
 
-    public boolean addData(String item1,String item2,String item3) {
+    public boolean addData(String item1,String item2,String item3,String item4) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
         contentValues.put(COL1, item1);
         contentValues.put(COL2, item2);
         contentValues.put(COL3, item3);
+        contentValues.put(COL4, item4);
 
 
         long result = db.insert(TABLE_NAME, null, contentValues);
@@ -55,9 +58,9 @@ public class datedata extends SQLiteOpenHelper {
 
     public Cursor readsearch(String searchKeyword){
 
-        String query = "SELECT * FROM " + TABLE_NAME+" WHERE "+COL1+" LIKE ? OR "+COL2+" LIKE ?";
+        String query = "SELECT * FROM " + TABLE_NAME+" WHERE "+COL1+" LIKE ? OR "+COL2+" LIKE ? OR "+COL3+" LIKE ? OR "+COL4+" LIKE ?";
         SQLiteDatabase db = this.getReadableDatabase();
-        String[] searchArgs = {"%" + searchKeyword + "%", "%" + searchKeyword + "%"};
+        String[] searchArgs = {"%" + searchKeyword + "%", "%" + searchKeyword + "%", "%" + searchKeyword + "%", "%" + searchKeyword + "%"};
 
 
         Cursor cursor = null;
