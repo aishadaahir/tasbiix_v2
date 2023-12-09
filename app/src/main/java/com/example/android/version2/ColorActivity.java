@@ -18,14 +18,12 @@ public class ColorActivity extends BaseActivity {
     private static final String THEME_KEY = "theme_key";
     RadioButton radioButton1,radioButton2;
     RadioGroup radioGroup;
-    Button back,back2;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_color);
-        back = findViewById(R.id.button);
-        back2 = findViewById(R.id.button2);
         radioGroup = findViewById(R.id.radioGroup);
         radioButton1 = findViewById(R.id.light);
         radioButton2 = findViewById(R.id.dark);
@@ -40,21 +38,6 @@ public class ColorActivity extends BaseActivity {
             RadioButton radioButton = (RadioButton) radioGroup.getChildAt(1);
             radioButton.setChecked(true);
         }
-
-        back.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                setAppTheme2(true);
-
-            }
-        });
-
-        back2.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                setAppTheme2(false);
-            }
-        });
 
         radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override

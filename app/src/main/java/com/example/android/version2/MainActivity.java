@@ -116,12 +116,15 @@ public class MainActivity extends BaseActivity {
                 dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
                 dialog.setCancelable(false);
                 dialog.setContentView(R.layout.popupdate);
+//
+//                TextView text = (TextView) dialog.findViewById(R.id.Accountnum);
+//                text.setText("count");
 
-                TextView text = (TextView) dialog.findViewById(R.id.textView);
-                text.setText("count");
 
-                TextInputEditText  updatecount = (TextInputEditText) dialog.findViewById(R.id.count);
+                TextInputEditText  updatecount = (TextInputEditText) dialog.findViewById(R.id.Name);
+                TextInputEditText  titilename = (TextInputEditText) dialog.findViewById(R.id.Names);
                 updatecount.setText(String.valueOf(count));
+                titilename.setText(titles.getText().toString());
 
                 Button save = (Button) dialog.findViewById(R.id.save);
                 Button cancel = (Button) dialog.findViewById(R.id.cancel);
@@ -129,6 +132,7 @@ public class MainActivity extends BaseActivity {
                     @Override
                     public void onClick(View v) {
                         count= Integer.parseInt(updatecount.getText().toString());
+                        titles.setText(titilename.getText().toString());
                         updateCount();
                         dialog.dismiss();
                     }
@@ -154,7 +158,7 @@ public class MainActivity extends BaseActivity {
             }
 
         });
-/// make drawable xml shape from android
+
 
         resets.setOnClickListener(new View.OnClickListener() {
             @Override

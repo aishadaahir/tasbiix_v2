@@ -111,7 +111,7 @@ android:orientation="horizontal">
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/counts"
+        android:id="@+id/countes"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
@@ -120,12 +120,12 @@ android:orientation="horizontal">
         android:ellipsize="end"
         android:maxLines="1"
         android:textSize="16sp"
-        app:layout_constraintBottom_toTopOf="@+id/lap"
-        app:layout_constraintStart_toEndOf="@+id/Accountnum"
+        app:layout_constraintBottom_toTopOf="@+id/dtext"
+        app:layout_constraintStart_toEndOf="@+id/text1"
         app:layout_constraintTop_toBottomOf="@+id/Name" />
 
     <TextView
-        android:id="@+id/lap"
+        android:id="@+id/dtext"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
@@ -134,34 +134,34 @@ android:orientation="horizontal">
         android:maxLines="1"
         android:textSize="16sp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/accountnum" />
+        app:layout_constraintStart_toEndOf="@+id/text3" />
 
     <TextView
-        android:id="@+id/Accountnum"
-        android:layout_width="84dp"
+        android:id="@+id/text1"
+        android:layout_width="70dp"
         android:layout_height="28dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="24dp"
         android:ems="10"
+        android:text="Counts"
         android:textSize="16sp"
-        app:layout_constraintBottom_toTopOf="@+id/accountnum"
+        app:layout_constraintBottom_toTopOf="@+id/text3"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/Name"
-        tools:text="Counts" />
+        app:layout_constraintTop_toBottomOf="@+id/Name" />
 
     <TextView
-        android:id="@+id/accountnum"
-        android:layout_width="84dp"
+        android:id="@+id/text3"
+        android:layout_width="70dp"
         android:layout_height="28dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="8dp"
         android:layout_marginBottom="8dp"
         android:ems="10"
         android:textSize="16sp"
+        android:text="Date"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/Accountnum"
-        tools:text="Lap" />
+        app:layout_constraintTop_toBottomOf="@+id/text1"/>
 
 <!--    <ImageButton-->
 <!--        android:id="@+id/delete"-->
@@ -178,7 +178,7 @@ android:orientation="horizontal">
 <!--        app:tint="?attr/buttons_imgview" />-->
 
     <TextView
-        android:id="@+id/date2"
+        android:id="@+id/restype"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"

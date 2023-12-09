@@ -20,13 +20,14 @@ import java.util.Random;
 
 public class dataAdapter extends RecyclerView.Adapter<dataAdapter.MyViewHolder> {
     private Context context;
-    private ArrayList name,phone,type;
+    private ArrayList title,count,date,type;
 
 
-    public dataAdapter(Context context,ArrayList name,ArrayList phone,ArrayList type){
+    public dataAdapter(Context context,ArrayList title,ArrayList count,ArrayList date,ArrayList type){
         this.context = context;
-        this.name = name;
-        this.phone = phone;
+        this.title = title;
+        this.count = count;
+        this.date = date;
         this.type = type;
 
     }
@@ -42,8 +43,9 @@ public class dataAdapter extends RecyclerView.Adapter<dataAdapter.MyViewHolder> 
     @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
     public void onBindViewHolder(@NonNull final MyViewHolder holder, final int position) {
-        holder.name.setText(String.valueOf(name.get(position)));
-        holder.phone.setText(String.valueOf(phone.get(position)));
+        holder.title.setText(String.valueOf(title.get(position)));
+        holder.count.setText(String.valueOf(count.get(position)));
+        holder.date.setText(String.valueOf(date.get(position)));
         holder.type.setText(String.valueOf(type.get(position)));
 
     }
@@ -69,18 +71,19 @@ public class dataAdapter extends RecyclerView.Adapter<dataAdapter.MyViewHolder> 
 
     @Override
     public int getItemCount() {
-        return name.size();
+        return count.size();
     }
 
 
     class MyViewHolder extends RecyclerView.ViewHolder {
 
-        TextView name,phone,type;
+        TextView title,count,date,type;
         MyViewHolder(@NonNull View itemView) {
             super(itemView);
-            name = itemView.findViewById(R.id.count);
-            phone = itemView.findViewById(R.id.date);
-            type = itemView.findViewById(R.id.date2);
+            title = itemView.findViewById(R.id.Name);
+            count = itemView.findViewById(R.id.countes);
+            date = itemView.findViewById(R.id.dtext);
+            type = itemView.findViewById(R.id.restype);
 
 
         }

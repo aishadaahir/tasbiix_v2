@@ -61,8 +61,7 @@ android:orientation="vertical">
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/accountnum2"
         app:layout_constraintTop_toBottomOf="@+id/constraintLayout3"
-        app:tint="@color/black"
-        tools:text="dfdgdfgfdgdfgf" />
+        app:tint="@color/black" />
 
     <View
         android:id="@+id/v1"
@@ -100,8 +99,7 @@ android:orientation="vertical">
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/Accountnum"
         app:layout_constraintTop_toBottomOf="@+id/title"
-        app:tint="@color/black"
-        tools:text="rgeds" />
+        app:tint="@color/black" />
 
     <View
         android:id="@+id/v2"
@@ -139,8 +137,7 @@ android:orientation="vertical">
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/accountnum"
         app:layout_constraintTop_toBottomOf="@+id/Count"
-        app:tint="@color/black"
-        tools:text="dfvg" />
+        app:tint="@color/black" />
 
     <View
         android:id="@+id/v3"
