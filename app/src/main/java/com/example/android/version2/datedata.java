@@ -9,7 +9,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 public class datedata extends SQLiteOpenHelper {
 
-    public static final String DATABASE_NAME = "reset.db";
+    public static final String DATABASE_NAME = "reset2.db";
     public static final String TABLE_NAME = "reset_date";
     public static final String COL1 = "count";
     public static final String COL2 = "date";

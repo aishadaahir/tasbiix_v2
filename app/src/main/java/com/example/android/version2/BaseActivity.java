@@ -11,6 +11,9 @@ import androidx.appcompat.app.AppCompatActivity;
 public class BaseActivity extends AppCompatActivity {
     private static final String THEME_PREF = "theme_pref";
     private static final String THEME_KEY = "theme_key";
+    public static final String title = "title";
+    public static final String countpref = "count";
+    public static final String limitpref = "limit";
     private boolean isDarkThemeEnabled=true;
     @Override
     protected void onCreate(Bundle savedInstanceState) {

@@ -8,7 +8,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 public class routinedata extends SQLiteOpenHelper {
 
-    public static final String DATABASE_NAME = "routine.db";
+    public static final String DATABASE_NAME = "routine2.db";
     public static final String TABLE_NAME = "routine_date";
     public static final String COL1 = "count";
     public static final String COL2 = "lap";
@@ -30,7 +30,7 @@ public class routinedata extends SQLiteOpenHelper {
         db.execSQL(createTable);
     }
 
-    public void insertInitialData(SQLiteDatabase db) {
+    public void insertInitialDatas(SQLiteDatabase db) {
         delete();
 
         ContentValues contentValues = new ContentValues();

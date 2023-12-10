@@ -29,5 +29,6 @@
     <color name="dateindicate">#ffe3f4</color>
     <color name="prime2">#FFFFFF</color>
     <color name="clock">#67EA5A</color>
+    <color name="transperant">#00FFFFFF</color>
 
 </resources>

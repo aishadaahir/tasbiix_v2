@@ -11,10 +11,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.core.view.ViewCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -26,13 +28,16 @@ public class RoutineAdapter extends RecyclerView.Adapter<RoutineAdapter.MyViewHo
     private ArrayList id,lap,counts,Name;
 
     ItemClicklistner ItemClicklistner;
-    public RoutineAdapter(Context context, ArrayList id, ArrayList lap, ArrayList counts, ArrayList Name, ItemClicklistner ItemClicklistner){
+    ItemClicklistner2 ItemClicklistner2;
+    public RoutineAdapter(Context context, ArrayList id, ArrayList lap, ArrayList counts, ArrayList Name,
+                          ItemClicklistner ItemClicklistner, ItemClicklistner2 ItemClicklistner2){
         this.context = context;
         this.id = id;
         this.lap = lap;
         this.counts = counts;
         this.Name = Name;
         this.ItemClicklistner = ItemClicklistner;
+        this.ItemClicklistner2 = ItemClicklistner2;
 
     }
 
@@ -62,6 +67,18 @@ public class RoutineAdapter extends RecyclerView.Adapter<RoutineAdapter.MyViewHo
                 ItemClicklistner.onItem(position,intent);
             }
         });
+        holder.layout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(context, version2list.class);
+                intent.putExtra("ID", String.valueOf(id.get(position)));
+                intent.putExtra("Title", String.valueOf(Name.get(position)));
+                intent.putExtra("count", String.valueOf(counts.get(position)));
+                intent.putExtra("lap", String.valueOf(lap.get(position)));
+
+                ItemClicklistner2.onItem(position,intent);
+            }
+        });
 
     }
 
@@ -87,6 +104,9 @@ public class RoutineAdapter extends RecyclerView.Adapter<RoutineAdapter.MyViewHo
     public interface ItemClicklistner {
         void onItem(int position,Intent intent);
     }
+    public interface ItemClicklistner2 {
+        void onItem(int position,Intent intent);
+    }
     @Override
     public int getItemCount() {
         return id.size();
@@ -97,6 +117,7 @@ public class RoutineAdapter extends RecyclerView.Adapter<RoutineAdapter.MyViewHo
 
         TextView lap,counts,Name,accountnum,Accountnum;
         ImageView delete;
+        LinearLayout layout;
         MyViewHolder(@NonNull View itemView) {
             super(itemView);
             lap = itemView.findViewById(R.id.lap);
@@ -105,6 +126,7 @@ public class RoutineAdapter extends RecyclerView.Adapter<RoutineAdapter.MyViewHo
             Accountnum = itemView.findViewById(R.id.Accountnum);
             accountnum = itemView.findViewById(R.id.accountnum);
             delete = itemView.findViewById(R.id.delete);
+            layout = itemView.findViewById(R.id.notelayout);
 
 
         }

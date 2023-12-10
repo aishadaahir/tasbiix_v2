@@ -7,9 +7,12 @@ import android.annotation.SuppressLint;
 import android.app.Dialog;
 import android.app.SearchManager;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
@@ -199,6 +202,35 @@ public class version2list extends BaseActivity {
 
 
             }
+        },new RoutineAdapter.ItemClicklistner2() {
+            @SuppressLint("NotifyDataSetChanged")
+            @Override
+            public void onItem(int position, Intent intent) {
+                SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(version2list.this);
+                SharedPreferences.Editor editor = sharedPreferences.edit();
+                int sum= Integer.valueOf(intent.getExtras().getString("count"))*Integer.valueOf(intent.getExtras().getString("lap"));
+                Log.e("errreee", String.valueOf(sum));
+                Log.e("errreee", String.valueOf(intent.getExtras().getInt("count")));
+                Log.e("errreee", intent.getExtras().getString("count"));
+                editor.putString(title, intent.getExtras().getString("Title"));
+                editor.putString(countpref, String.valueOf(0));
+                editor.putString(limitpref, String.valueOf(sum));
+                editor.apply();
+                startActivity(new Intent(getApplicationContext(), MainActivity.class));
+                overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
+//                String ID = intent.getExtras().getString("ID");
+//                myDB.deleteRoutine(ID);
+//                Toast.makeText(version2list.this, "Routine removed from list", Toast.LENGTH_SHORT).show();
+//                Adapter.notifyDataSetChanged();
+//                id = new ArrayList<>();
+//                lap = new ArrayList<>();
+//                counts = new ArrayList<>();
+//                Name = new ArrayList<>();
+//                storeDataInArrays();
+//                getData();
+
+
+            }
 
         });
         recyclerView.setAdapter(Adapter);
@@ -210,7 +242,7 @@ public class version2list extends BaseActivity {
         Cursor cursor = myDB.readAllData();
         if(cursor.getCount() == 0){
             SQLiteDatabase db = myDB.getWritableDatabase();
-            myDB.insertInitialData(db);
+            myDB.insertInitialDatas(db);
             db.close();
             storeDataInArrays();
         }else{

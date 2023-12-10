@@ -13,11 +13,13 @@ import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.media.RingtoneManager;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
+import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.MenuItem;
@@ -43,10 +45,14 @@ public class MainActivity extends BaseActivity {
     static TextView textViewCount,t1,t2,t3,t4,titles;
     ImageView menus,update,resets,add;
     private static int count = 0;
+    private static int limit = 0;
+//    private static final String title = "title";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
         textViewCount = findViewById(R.id.textViewCount);
         t1 = findViewById(R.id.textView1);
         t2 = findViewById(R.id.textView2);
@@ -58,7 +64,10 @@ public class MainActivity extends BaseActivity {
         titles = findViewById(R.id.titles);
         update = findViewById(R.id.update);
         add = findViewById(R.id.add);
-
+        titles.setText(sharedPreferences.getString(title, "No Title"));
+        count = Integer.parseInt(sharedPreferences.getString(countpref, "0"));
+        limit = Integer.parseInt(sharedPreferences.getString(limitpref, "0"));
+        updateCount();
 //        start();
 //        scheduleNotification();
 //        back.setOnClickListener(new View.OnClickListener() {
@@ -133,6 +142,10 @@ public class MainActivity extends BaseActivity {
                     public void onClick(View v) {
                         count= Integer.parseInt(updatecount.getText().toString());
                         titles.setText(titilename.getText().toString());
+                        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(MainActivity.this);
+                        SharedPreferences.Editor editor = sharedPreferences.edit();
+                        editor.putString(countpref, String.valueOf(count));
+                        editor.apply();
                         updateCount();
                         dialog.dismiss();
                     }
@@ -170,6 +183,10 @@ public class MainActivity extends BaseActivity {
                 String formattedDate = dateFormat.format(currentDate);
                 myDB.addData(String.valueOf(count),formattedDate,"reset",titles.getText().toString());
                 count=0;
+                SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(MainActivity.this);
+                SharedPreferences.Editor editor = sharedPreferences.edit();
+                editor.putString(countpref, String.valueOf(count));
+                editor.apply();
                 @SuppressLint("DefaultLocale") String countString = String.format("%05d", count);
                 textViewCount.setText(String.valueOf(countString.charAt(4)));
                 t1.setText(String.valueOf(countString.charAt(3)));
@@ -180,9 +197,33 @@ public class MainActivity extends BaseActivity {
 
         });
     }
+    @SuppressLint("SetTextI18n")
     private void incrementCount() {
         count++;
+        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(MainActivity.this);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putString(countpref, String.valueOf(count));
+        editor.apply();
+        if(count>=limit && limit!=0){
+            Date currentDate = new Date();
 
+            SimpleDateFormat dateFormat = new SimpleDateFormat("EEE,dd/MM/yyyy HH:mm:ss", Locale.getDefault());
+            String formattedDate = dateFormat.format(currentDate);
+            myDB.addData(String.valueOf(count),formattedDate,"Routine",titles.getText().toString());
+            count=0;
+            limit=0;
+            titles.setText("No Title");
+            editor.putString(title, "No Title");
+            editor.putString(countpref, String.valueOf(0));
+            editor.putString(limitpref, String.valueOf(0));
+            editor.apply();
+            @SuppressLint("DefaultLocale") String countString = String.format("%05d", count);
+            textViewCount.setText(String.valueOf(countString.charAt(4)));
+            t1.setText(String.valueOf(countString.charAt(3)));
+            t2.setText(String.valueOf(countString.charAt(2)));
+            t3.setText(String.valueOf(countString.charAt(1)));
+            t4.setText(String.valueOf(countString.charAt(0)));
+        }
         if(count>=100000){
             Date currentDate = new Date();
 
@@ -190,6 +231,8 @@ public class MainActivity extends BaseActivity {
             String formattedDate = dateFormat.format(currentDate);
             myDB.addData(String.valueOf(count),formattedDate,"congrats",titles.getText().toString());
             count=0;
+            editor.putString(countpref, String.valueOf(count));
+            editor.apply();
             @SuppressLint("DefaultLocale") String countString = String.format("%05d", count);
             textViewCount.setText(String.valueOf(countString.charAt(4)));
             t1.setText(String.valueOf(countString.charAt(3)));
@@ -208,8 +251,32 @@ public class MainActivity extends BaseActivity {
 
     }
     private void updateCount() {
+        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(MainActivity.this);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        if(count>=limit && limit!=0){
+            Date currentDate = new Date();
+
+            SimpleDateFormat dateFormat = new SimpleDateFormat("EEE,dd/MM/yyyy HH:mm:ss", Locale.getDefault());
+            String formattedDate = dateFormat.format(currentDate);
+            myDB.addData(String.valueOf(limit),formattedDate,"Routine",titles.getText().toString());
+            count=0;
+            limit=0;
+            titles.setText("No Title");
+            editor.putString(title, "No Title");
+            editor.putString(countpref, String.valueOf(0));
+            editor.putString(limitpref, String.valueOf(0));
+            editor.apply();
+            @SuppressLint("DefaultLocale") String countString = String.format("%05d", count);
+            textViewCount.setText(String.valueOf(countString.charAt(4)));
+            t1.setText(String.valueOf(countString.charAt(3)));
+            t2.setText(String.valueOf(countString.charAt(2)));
+            t3.setText(String.valueOf(countString.charAt(1)));
+            t4.setText(String.valueOf(countString.charAt(0)));
+        }
         if(count>99999){
             count=99999;
+            editor.putString(countpref, String.valueOf(count));
+            editor.apply();
         }
         @SuppressLint("DefaultLocale") String countString = String.format("%05d", count);
         textViewCount.setText(String.valueOf(countString.charAt(4)));
