@@ -20,9 +20,8 @@
         android:id="@+id/radioGroup"
         android:layout_width="wrap_content"
         android:layout_height="47dp"
-        android:layout_marginStart="32dp"
         android:layout_marginTop="55dp"
-        android:layout_marginEnd="92dp"
+        android:layout_marginEnd="8dp"
         android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/textView6"
@@ -30,9 +29,10 @@
 
         <RadioButton
             android:id="@+id/light"
-            android:layout_width="104dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="40dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="5dp"
             android:text="Light"
             android:textColor="?attr/buttons_imgview"
             app:layout_constraintEnd_toEndOf="parent"
@@ -41,14 +41,87 @@
 
         <RadioButton
             android:id="@+id/dark"
-            android:layout_width="106dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginEnd="5dp"
             android:text="Dark"
             android:textColor="?attr/buttons_imgview"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/light" />
 
+        <RadioButton
+            android:id="@+id/blue"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="5dp"
+            android:text="Blue"
+            android:textColor="?attr/buttons_imgview"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/light" />
+
+        <RadioButton
+            android:id="@+id/red"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="5dp"
+            android:text="Red"
+            android:textColor="?attr/buttons_imgview"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/light" />
+
+        <RadioButton
+            android:id="@+id/green"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Green"
+            android:textColor="?attr/buttons_imgview"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/light" />
+
+    </RadioGroup>
+
+    <RadioGroup
+        android:id="@+id/daily_weekly_button_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="156dp"
+        android:layout_marginEnd="8dp"
+        android:gravity="center_horizontal"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+
+        <RadioButton
+            android:id="@+id/radio0"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="5dp"
+            android:background="@drawable/costume"
+            android:button="@android:color/transparent"
+            android:checked="true"
+            android:gravity="center"
+
+
+            />
+
+        <RadioButton
+            android:id="@+id/radio1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="5dp"
+            android:background="@drawable/costume"
+            android:button="@android:color/transparent"
+            android:gravity="center"
+
+            />
 
     </RadioGroup>
 

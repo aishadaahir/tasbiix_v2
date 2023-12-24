@@ -12,7 +12,7 @@ import android.widget.TextView;
 import java.util.Objects;
 
 
-public class Compass_Activity extends AppCompatActivity {
+public class Compass_Activity extends BaseActivity {
 
     private static final String TAG = "CompassActivity";
 

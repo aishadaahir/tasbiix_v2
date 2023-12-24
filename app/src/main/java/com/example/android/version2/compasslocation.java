@@ -21,7 +21,7 @@ import java.io.IOException;
 import java.util.List;
 import java.util.Locale;
 
-public class compasslocation extends AppCompatActivity implements SensorEventListener {
+public class compasslocation extends BaseActivity implements SensorEventListener {
 
     private ImageView compassImage,arrowView;
     private TextView addressText,jiho;

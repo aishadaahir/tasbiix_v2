@@ -1,0 +1,31 @@
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- Radio Button 1 (Component 1 and Component 2) -->
+    <item android:id="@+id/radio0" android:state_checked="false">
+        <shape android:shape="rectangle">
+            <corners android:radius="400dp" />
+            <solid android:color="#32FFFF" />
+        </shape>
+    </item>
+    <item android:id="@+id/radio0_normal" android:state_checked="true">
+        <shape android:shape="rectangle">
+            <corners android:radius="400dp" />
+            <solid android:color="#92FAFA" />
+        </shape>
+    </item>
+
+    <!-- Radio Button 2 (Component 3) -->
+    <item android:id="@+id/radio1" android:state_checked="false">
+        <shape android:shape="rectangle">
+            <corners android:radius="400dp" />
+            <solid android:color="#FF0000" />
+        </shape>
+    </item>
+    <item android:id="@+id/radio1_normal" android:state_checked="true">
+        <shape android:shape="rectangle">
+            <corners android:radius="400dp" />
+            <solid android:color="#F36868" />
+        </shape>
+    </item>
+
+
+</selector>

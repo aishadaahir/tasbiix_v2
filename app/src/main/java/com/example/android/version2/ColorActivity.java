@@ -16,7 +16,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 public class ColorActivity extends BaseActivity {
     private static final String THEME_KEY = "theme_key";
-    RadioButton radioButton1,radioButton2;
+    private static final String THEME = "theme";
+    RadioButton radioButton1,radioButton2,radioButton3,radioButton4,radioButton5;
     RadioGroup radioGroup;
 
 
@@ -27,15 +28,26 @@ public class ColorActivity extends BaseActivity {
         radioGroup = findViewById(R.id.radioGroup);
         radioButton1 = findViewById(R.id.light);
         radioButton2 = findViewById(R.id.dark);
+        radioButton3 = findViewById(R.id.blue);
+        radioButton4 = findViewById(R.id.red);
+        radioButton5 = findViewById(R.id.green);
 
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
-        boolean isDarkThemeEnabled = sharedPreferences.getBoolean(THEME_KEY, false);
-        if (isDarkThemeEnabled) {
+        String themecolor = sharedPreferences.getString(THEME, "light");
+        if (themecolor.equals("light")) {
             RadioButton radioButton = (RadioButton) radioGroup.getChildAt(0);
             radioButton.setChecked(true);
-
-        } else {
+        } else if(themecolor.equals("dark")) {
             RadioButton radioButton = (RadioButton) radioGroup.getChildAt(1);
+            radioButton.setChecked(true);
+        } else if(themecolor.equals("blue")) {
+            RadioButton radioButton = (RadioButton) radioGroup.getChildAt(2);
+            radioButton.setChecked(true);
+        } else if(themecolor.equals("red")) {
+            RadioButton radioButton = (RadioButton) radioGroup.getChildAt(3);
+            radioButton.setChecked(true);
+        }else if(themecolor.equals("green")) {
+            RadioButton radioButton = (RadioButton) radioGroup.getChildAt(4);
             radioButton.setChecked(true);
         }
 
@@ -43,9 +55,15 @@ public class ColorActivity extends BaseActivity {
             @Override
             public void onCheckedChanged(RadioGroup group, int checkedId) {
                 if (checkedId == R.id.light) {
-                    setAppTheme2(true);
+                    setAppTheme2("light");
                 } else if (checkedId == R.id.dark) {
-                    setAppTheme2(false);
+                    setAppTheme2("dark");
+                }else if (checkedId == R.id.blue) {
+                    setAppTheme2("blue");
+                }else if (checkedId == R.id.red) {
+                    setAppTheme2("red");
+                }else if (checkedId == R.id.green) {
+                    setAppTheme2("green");
                 }
             }
         });
