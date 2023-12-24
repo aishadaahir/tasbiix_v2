@@ -101,6 +101,10 @@ public class MainActivity extends BaseActivity {
                             startActivity(new Intent(getApplicationContext(), datalist.class));
                             overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
                             return true;
+                        } else if (itemId == R.id.compass) {
+                            startActivity(new Intent(getApplicationContext(), compasslocation.class));
+                            overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
+                            return true;
                         }else if (itemId == R.id.setting) {
                             startActivity(new Intent(getApplicationContext(), ColorActivity.class));
                             overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
