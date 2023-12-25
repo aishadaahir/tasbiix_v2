@@ -43,7 +43,7 @@ import java.util.Locale;
 public class MainActivity extends BaseActivity {
     static datedata myDB;
     static TextView textViewCount,t1,t2,t3,t4,titles;
-    ImageView menus,update,resets,add;
+    ImageView menus,update,resets,add,setting,addbutton,list,resets2;
     private static int count = 0;
     private static int limit = 0;
 //    private static final String title = "title";
@@ -63,6 +63,10 @@ public class MainActivity extends BaseActivity {
         menus = findViewById(R.id.menus);
         titles = findViewById(R.id.titles);
         update = findViewById(R.id.update);
+        resets2 = findViewById(R.id.resets2);
+        addbutton = findViewById(R.id.addbutton);
+        list = findViewById(R.id.list);
+        setting = findViewById(R.id.setting);
         add = findViewById(R.id.add);
         titles.setText(sharedPreferences.getString(title, "No Title"));
         count = Integer.parseInt(sharedPreferences.getString(countpref, "0"));
@@ -101,11 +105,13 @@ public class MainActivity extends BaseActivity {
                             startActivity(new Intent(getApplicationContext(), datalist.class));
                             overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
                             return true;
-                        } else if (itemId == R.id.compass) {
-                            startActivity(new Intent(getApplicationContext(), compasslocation.class));
-                            overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
-                            return true;
-                        }else if (itemId == R.id.setting) {
+                        }
+//                        else if (itemId == R.id.compass) {
+//                            startActivity(new Intent(getApplicationContext(), compasslocation.class));
+//                            overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
+//                            return true;
+//                        }
+                        else if (itemId == R.id.setting) {
                             startActivity(new Intent(getApplicationContext(), ColorActivity.class));
                             overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
                             return true;
@@ -168,7 +174,32 @@ public class MainActivity extends BaseActivity {
         });
 
 
+        setting.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getApplicationContext(), ColorActivity.class));
+                overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
+            }
+
+        });
+        list.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getApplicationContext(), version2list.class));
+                overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
+            }
+
+        });
+
         add.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                incrementCount();
+            }
+
+        });
+
+        addbutton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 incrementCount();
@@ -178,6 +209,29 @@ public class MainActivity extends BaseActivity {
 
 
         resets.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Date currentDate = new Date();
+
+                // Create a date format
+                SimpleDateFormat dateFormat = new SimpleDateFormat("EEE,dd/MM/yyyy HH:mm:ss", Locale.getDefault());
+                String formattedDate = dateFormat.format(currentDate);
+                myDB.addData(String.valueOf(count),formattedDate,"reset",titles.getText().toString());
+                count=0;
+                SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(MainActivity.this);
+                SharedPreferences.Editor editor = sharedPreferences.edit();
+                editor.putString(countpref, String.valueOf(count));
+                editor.apply();
+                @SuppressLint("DefaultLocale") String countString = String.format("%05d", count);
+                textViewCount.setText(String.valueOf(countString.charAt(4)));
+                t1.setText(String.valueOf(countString.charAt(3)));
+                t2.setText(String.valueOf(countString.charAt(2)));
+                t3.setText(String.valueOf(countString.charAt(1)));
+                t4.setText(String.valueOf(countString.charAt(0)));
+            }
+
+        });
+        resets2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Date currentDate = new Date();

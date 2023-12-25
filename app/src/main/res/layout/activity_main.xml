@@ -45,6 +45,7 @@
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <ScrollView
+        android:id="@+id/scrol"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintTop_toBottomOf="@+id/constraintLayout2"
@@ -188,5 +189,63 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
 
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="15sp"
+        android:background="@drawable/rounded"
+        android:clickable="false"
+        android:elevation="2sp"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.482"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:ignore="MissingConstraints">
 
+        <ImageButton
+            android:id="@+id/resets2"
+            android:layout_width="41dp"
+            android:layout_height="35dp"
+            android:layout_marginStart="5dp"
+            android:layout_marginTop="5dp"
+            android:backgroundTint="#00FFFFFF"
+            android:contentDescription="TODO"
+            android:scaleType="fitCenter"
+            android:scaleX="5"
+            android:scaleY="5"
+            app:srcCompat="@drawable/reset"
+            app:tint="?attr/buttons_imgview"
+            tools:ignore="DuplicateIds,MissingConstraints" />
+
+        <ImageView
+            android:id="@+id/list"
+            android:layout_width="86dp"
+            android:layout_height="39dp"
+            app:tint="?attr/buttons_imgview"
+            tools:layout_editor_absoluteX="45dp"
+            tools:layout_editor_absoluteY="42dp"
+            app:srcCompat="@drawable/baseline_list_24" />
+
+        <ImageView
+            android:id="@+id/addbutton"
+            android:layout_width="86dp"
+            android:layout_height="39dp"
+            app:tint="?attr/buttons_imgview"
+            tools:layout_editor_absoluteX="158dp"
+            tools:layout_editor_absoluteY="28dp"
+            app:srcCompat="@android:drawable/ic_input_add" />
+
+        <ImageView
+            android:id="@+id/setting"
+            android:layout_width="66dp"
+            android:layout_height="31dp"
+            android:layout_marginStart="5dp"
+            android:layout_marginTop="5dp"
+            app:tint="?attr/buttons_imgview"
+            tools:layout_editor_absoluteX="243dp"
+            tools:layout_editor_absoluteY="46dp"
+            app:srcCompat="@drawable/settings" />
+
+    </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

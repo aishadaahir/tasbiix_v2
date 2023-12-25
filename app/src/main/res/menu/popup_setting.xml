@@ -9,10 +9,10 @@
         android:icon="@drawable/baseline_history_24"
         android:title="History List" />
 
-    <item
-        android:id="@+id/compass"
-        android:icon="@drawable/compass"
-        android:title="compass" />
+<!--    <item-->
+<!--        android:id="@+id/compass"-->
+<!--        android:icon="@drawable/compass"-->
+<!--        android:title="compass" />-->
 
     <item
         android:id="@+id/setting"

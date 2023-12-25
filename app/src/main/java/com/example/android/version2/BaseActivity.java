@@ -57,8 +57,9 @@ public class BaseActivity extends AppCompatActivity {
         if(!sharedPreferences.getString(THEME, "light").equals(themecolor)){
             editor.putString(THEME, themecolor);
             editor.apply();
-            startActivity(new Intent(getApplicationContext(), MainActivity.class));
+            startActivity(new Intent(getApplicationContext(), ColorActivity.class));
             recreate();
+            finish();
         }
 
 
