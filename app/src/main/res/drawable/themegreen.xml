@@ -7,7 +7,7 @@
             <stroke android:width="3dp"  android:color="?attr/buttons_imgview"/>
         </shape>
     </item>
-    <item android:id="@+id/green">
+    <item >
         <shape android:shape="rectangle">
             <corners android:radius="400dp" />
             <solid android:color="#7AAD75" />
