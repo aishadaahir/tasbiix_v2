@@ -87,8 +87,10 @@ public class version2list extends BaseActivity {
                 text2.setText("Count");
                 text3.setText("Lap");
                 title.setHint("enter title");
-                count.setHint("enter count");
-                laps.setHint("enter lap");
+//                count.setHint("enter count");
+                count.setText("1");
+                laps.setText("1");
+//                laps.setHint("enter lap");
 
                 Button save = (Button) dialog.findViewById(R.id.save);
                 Button cancel = (Button) dialog.findViewById(R.id.cancel);

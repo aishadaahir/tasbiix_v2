@@ -1,10 +1,12 @@
 package com.example.android.version2;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.os.Build;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,19 +17,26 @@ import androidx.annotation.RequiresApi;
 import androidx.core.view.ViewCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.Locale;
+import java.util.Objects;
 import java.util.Random;
 
 public class dataAdapter extends RecyclerView.Adapter<dataAdapter.MyViewHolder> {
     private Context context;
     private ArrayList title,count,date,type;
+    String todayString;
 
 
-    public dataAdapter(Context context,ArrayList title,ArrayList count,ArrayList date,ArrayList type){
+    public dataAdapter(Context context,ArrayList title,ArrayList count,ArrayList date,ArrayList type,String todayString){
         this.context = context;
         this.title = title;
         this.count = count;
         this.date = date;
+        this.todayString = todayString;
         this.type = type;
 
     }
@@ -40,34 +49,35 @@ public class dataAdapter extends RecyclerView.Adapter<dataAdapter.MyViewHolder> 
         return new MyViewHolder(view);
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
     public void onBindViewHolder(@NonNull final MyViewHolder holder, final int position) {
-        holder.title.setText(String.valueOf(title.get(position)));
-        holder.count.setText(String.valueOf(count.get(position)));
-        holder.date.setText(String.valueOf(date.get(position)));
-        holder.type.setText(String.valueOf(type.get(position)));
+        Log.e("dateformated",String.valueOf(date.get(position)));
+        SimpleDateFormat inputFormat = new SimpleDateFormat("E,dd/MM/yyyy HH:mm:ss", Locale.ENGLISH);
+        @SuppressLint("SimpleDateFormat") SimpleDateFormat outputFormat = new SimpleDateFormat("yyyy-MM-dd");
+
+        try {
+            Date dates = inputFormat.parse(String.valueOf(date.get(position)));
+            assert dates != null;
+            String formattedDate = outputFormat.format(dates);
+//            System.out.println("Formatted Date: " + formattedDate);
+            Log.e("dateformated",formattedDate);
+            if(Objects.equals(todayString, formattedDate)){
+                holder.title.setText(String.valueOf(title.get(position)));
+                holder.count.setText(String.valueOf(count.get(position)));
+//                Log.e("dateformated",String.valueOf(date.get(position)));
+                holder.date.setText(String.valueOf(date.get(position)));
+                holder.type.setText(String.valueOf(type.get(position)));
+            }
+
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+
+
 
     }
 
 
-    /// getRandomColor get random colors the usual reach is 256 but i limited it to 100 and you can set it to 156
-    ///setRandomGradientBackground  get two random colors from getRandomColor then produces gradient
-    private void setRandomGradientBackground(View myview) {
-        int color1 = getRandomColor();
-        int color2 = getRandomColor();
-        int[] colors = {color1, color2};
-        float[] positions = {0.0f, 1.0f};
-
-        ColorStateList colorStateList = new ColorStateList(new int[][]{new int[]{android.R.attr.state_enabled}}, colors);
-        ViewCompat.setBackgroundTintList(myview, colorStateList);
-        ViewCompat.setBackgroundTintMode(myview, PorterDuff.Mode.MULTIPLY);
-    }
-
-    private int getRandomColor() {
-        Random random = new Random();
-        return Color.argb(105, random.nextInt(100), random.nextInt(100), random.nextInt(100));
-    }
 
     @Override
     public int getItemCount() {

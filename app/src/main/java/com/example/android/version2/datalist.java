@@ -3,6 +3,7 @@ package com.example.android.version2;
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
@@ -14,6 +15,10 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.widget.PopupMenu;
 import android.widget.SearchView;
 import java.util.ArrayList;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.Locale;
 
 public class datalist extends BaseActivity {
 
@@ -121,7 +126,59 @@ public class datalist extends BaseActivity {
 
     private void getData() {
 
-        Adapter = new dataAdapter(datalist.this,title,count,date,type);
+        Calendar calendar = Calendar.getInstance();
+        Date today = calendar.getTime();
+
+        // Get yesterday's date
+        calendar.add(Calendar.DAY_OF_YEAR, -1);
+        Date yesterday = calendar.getTime();
+
+        // Get yesterday's date
+        calendar.add(Calendar.DAY_OF_YEAR, -1);
+        Date beforeyesterday = calendar.getTime();
+
+        // Get last week's date
+        calendar.add(Calendar.WEEK_OF_YEAR, -1);
+        Date lastWeek = calendar.getTime();
+
+        // Get last week's date
+        calendar.add(Calendar.DAY_OF_YEAR, -1);
+        Date beforelastWeek = calendar.getTime();
+
+        // Get last month's date
+        calendar.add(Calendar.MONTH, -1);
+        Date lastMonth = calendar.getTime();
+
+        // Get last month's date
+        calendar.add(Calendar.DAY_OF_YEAR, -1);
+        Date beforelastMonth = calendar.getTime();
+
+        // Get last year's date
+        calendar.add(Calendar.YEAR, -1);
+        Date lastYear = calendar.getTime();
+
+        // Format the dates as strings
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
+        String todayString = sdf.format(today);
+        String yesterdayString = sdf.format(yesterday);
+        String beforeyesterdayString = sdf.format(beforeyesterday);
+        String lastWeekString = sdf.format(lastWeek);
+        String beforelastWeekString = sdf.format(beforelastWeek);
+        String lastMonthString = sdf.format(lastMonth);
+        String beforelastMonthString = sdf.format(beforelastMonth);
+        String lastYearString = sdf.format(lastYear);
+
+        // Print the dates
+        Log.e("Today: ", todayString);
+        Log.e("Yesterday: ", yesterdayString);
+        Log.e("beforeyesterday: ", beforeyesterdayString);
+        Log.e("Last Week: ", lastWeekString);
+        Log.e("befoteLast Week: ", beforelastWeekString);
+        Log.e("Last Month: ",lastMonthString);
+        Log.e("beforeLast Month: ",beforelastMonthString);
+        Log.e("Last Year: ",lastYearString);
+
+        Adapter = new dataAdapter(datalist.this,title,count,date,type,todayString);
         recyclerView.setAdapter(Adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(datalist.this));
     }
