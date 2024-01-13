@@ -10,6 +10,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -52,7 +53,7 @@ public class dataAdapter extends RecyclerView.Adapter<dataAdapter.MyViewHolder> 
     @Override
     public void onBindViewHolder(@NonNull final MyViewHolder holder, final int position) {
         Log.e("dateformated",String.valueOf(date.get(position)));
-        SimpleDateFormat inputFormat = new SimpleDateFormat("E,dd/MM/yyyy HH:mm:ss", Locale.ENGLISH);
+        SimpleDateFormat inputFormat = new SimpleDateFormat("EEE,dd/MM/yyyy HH:mm:ss", Locale.ENGLISH);
         @SuppressLint("SimpleDateFormat") SimpleDateFormat outputFormat = new SimpleDateFormat("yyyy-MM-dd");
 
         try {
@@ -61,19 +62,35 @@ public class dataAdapter extends RecyclerView.Adapter<dataAdapter.MyViewHolder> 
             String formattedDate = outputFormat.format(dates);
 //            System.out.println("Formatted Date: " + formattedDate);
             Log.e("dateformated",formattedDate);
-            if(Objects.equals(todayString, formattedDate)){
-                holder.title.setText(String.valueOf(title.get(position)));
-                holder.count.setText(String.valueOf(count.get(position)));
-//                Log.e("dateformated",String.valueOf(date.get(position)));
-                holder.date.setText(String.valueOf(date.get(position)));
-                holder.type.setText(String.valueOf(type.get(position)));
-            }
+            holder.passtime.setText(formattedDate);
+//            if(Objects.equals(todayString, formattedDate)){
+//                holder.title.setText(String.valueOf(title.get(position)));
+//                holder.count.setText(String.valueOf(count.get(position)));
+////                Log.e("dateformated",String.valueOf(date.get(position)));
+//                holder.date.setText(String.valueOf(date.get(position)));
+//                holder.type.setText(String.valueOf(type.get(position)));
+//            }
+//            else{
+//                holder.datslayout.setVisibility(View.GONE);
+//            }
 
         } catch (ParseException e) {
             e.printStackTrace();
         }
+//Log.e("rrtedfgdffd",date.get(position).toString());
+//        if(Objects.equals(todayString, date.get(position))){
+//            holder.title.setText(String.valueOf(title.get(position)));
+//            holder.count.setText(String.valueOf(count.get(position)));
+////                Log.e("dateformated",String.valueOf(date.get(position)));
+//            holder.date.setText(String.valueOf(date.get(position)));
+//            holder.type.setText(String.valueOf(type.get(position)));
+//        }
 
-
+            holder.title.setText(String.valueOf(title.get(position)));
+            holder.count.setText(String.valueOf(count.get(position)));
+//                Log.e("dateformated",String.valueOf(date.get(position)));
+            holder.date.setText(String.valueOf(date.get(position)));
+            holder.type.setText(String.valueOf(type.get(position)));
 
     }
 
@@ -87,13 +104,16 @@ public class dataAdapter extends RecyclerView.Adapter<dataAdapter.MyViewHolder> 
 
     class MyViewHolder extends RecyclerView.ViewHolder {
 
-        TextView title,count,date,type;
+        TextView title,count,date,type,passtime;
+        LinearLayout datslayout;
         MyViewHolder(@NonNull View itemView) {
             super(itemView);
             title = itemView.findViewById(R.id.Name);
             count = itemView.findViewById(R.id.countes);
             date = itemView.findViewById(R.id.dtext);
             type = itemView.findViewById(R.id.restype);
+            passtime = itemView.findViewById(R.id.passtime);
+            datslayout = itemView.findViewById(R.id.datslayout);
 
 
         }
