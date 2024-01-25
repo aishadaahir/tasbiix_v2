@@ -15,12 +15,14 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.core.view.ViewCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Date;
 import java.util.Locale;
 import java.util.Objects;
@@ -29,16 +31,39 @@ import java.util.Random;
 public class dataAdapter extends RecyclerView.Adapter<dataAdapter.MyViewHolder> {
     private Context context;
     private ArrayList title,count,date,type;
-    String todayString;
+    String todayString,yesterday;
+    int positionlastyear,positionlastmonth,positionlasttoday,positionlastweek,positionlonger,positionlastyesterday;
+    int countlastyear,countlastmonth,countlasttoday,countlastweek,countlastyesterday,countlonger;
+    int today=0;
+    int yester=0;
+    int pos=-1;
+    int posy=-1;
+    MyViewHolder hold,hold2;
 
 
-    public dataAdapter(Context context,ArrayList title,ArrayList count,ArrayList date,ArrayList type,String todayString){
+    public dataAdapter(Context context,ArrayList title,ArrayList count,ArrayList date,ArrayList type,String todayString,String yesterday,
+    int countlastmonth,int positionlastmonth,int countlastyear,int positionlastyear,int countlastweek,int positionlastweek,int countlasttoday,
+                       int positionlasttoday,int countlastyesterday,int positionlastyesterday,int countlonger,int positionlonger){
         this.context = context;
         this.title = title;
         this.count = count;
         this.date = date;
         this.todayString = todayString;
+        this.yesterday = yesterday;
         this.type = type;
+        this.positionlastyear = positionlastyear;
+        this.countlastyear = countlastyear;
+        this.positionlastmonth = positionlastmonth;
+        this.countlastmonth = countlastmonth;
+        this.positionlasttoday = positionlasttoday;
+        this.countlasttoday = countlasttoday;
+        this.positionlastweek = positionlastweek;
+        this.countlastweek = countlastweek;
+        this.positionlastyesterday = positionlastyesterday;
+        this.countlastyesterday = countlastyesterday;
+        this.positionlonger = positionlonger;
+        this.countlonger = countlonger;
+
 
     }
 
@@ -52,6 +77,7 @@ public class dataAdapter extends RecyclerView.Adapter<dataAdapter.MyViewHolder> 
 
     @Override
     public void onBindViewHolder(@NonNull final MyViewHolder holder, final int position) {
+        holder.headlayout.setVisibility(View.GONE);
         Log.e("dateformated",String.valueOf(date.get(position)));
         SimpleDateFormat inputFormat = new SimpleDateFormat("EEE,dd/MM/yyyy HH:mm:ss", Locale.ENGLISH);
         @SuppressLint("SimpleDateFormat") SimpleDateFormat outputFormat = new SimpleDateFormat("yyyy-MM-dd");
@@ -62,29 +88,62 @@ public class dataAdapter extends RecyclerView.Adapter<dataAdapter.MyViewHolder> 
             String formattedDate = outputFormat.format(dates);
 //            System.out.println("Formatted Date: " + formattedDate);
             Log.e("dateformated",formattedDate);
-            holder.passtime.setText(formattedDate);
-//            if(Objects.equals(todayString, formattedDate)){
-//                holder.title.setText(String.valueOf(title.get(position)));
-//                holder.count.setText(String.valueOf(count.get(position)));
-////                Log.e("dateformated",String.valueOf(date.get(position)));
-//                holder.date.setText(String.valueOf(date.get(position)));
-//                holder.type.setText(String.valueOf(type.get(position)));
-//            }
+            if(!String.valueOf(positionlastmonth).equals("-1")){
+                if(Objects.equals(positionlastmonth, position)){
+                    holder.total.setText(String.valueOf(countlastmonth));
+                    holder.passtime.setText(formattedDate);
+                    holder.headlayout.setVisibility(View.VISIBLE);
+                }
+            }
+            if(!String.valueOf(positionlastyear).equals("-1")){
+                if(Objects.equals(positionlastyear, position)){
+                    holder.total.setText(String.valueOf(countlastyear));
+                    holder.passtime.setText(formattedDate);
+                    holder.headlayout.setVisibility(View.VISIBLE);
+                }
+
+            }
+            if(!String.valueOf(positionlastweek).equals("-1")){
+                if(Objects.equals(positionlastweek, position)){
+                    holder.total.setText(String.valueOf(countlastweek));
+                    holder.passtime.setText(formattedDate);
+                    holder.headlayout.setVisibility(View.VISIBLE);
+                }
+
+            }
+            if(!String.valueOf(positionlasttoday).equals("-1")){
+                if(Objects.equals(positionlasttoday, position)){
+                    holder.total.setText(String.valueOf(countlasttoday));
+                    holder.passtime.setText(formattedDate);
+                    holder.headlayout.setVisibility(View.VISIBLE);
+                }
+
+            }
+            if(!String.valueOf(positionlastyesterday).equals("-1")){
+                if(Objects.equals(positionlastyesterday, position)){
+                    holder.total.setText(String.valueOf(countlastyesterday));
+                    holder.passtime.setText(formattedDate);
+                    holder.headlayout.setVisibility(View.VISIBLE);
+                }
+
+            }
+            if(!String.valueOf(positionlonger).equals("-1")){
+                if(Objects.equals(positionlonger, position)){
+                    holder.total.setText(String.valueOf(countlonger));
+                    holder.passtime.setText(formattedDate);
+                    holder.headlayout.setVisibility(View.VISIBLE);
+                }
+
+            }
 //            else{
-//                holder.datslayout.setVisibility(View.GONE);
+//                holder.headlayout.setVisibility(View.GONE);
 //            }
+
 
         } catch (ParseException e) {
             e.printStackTrace();
         }
-//Log.e("rrtedfgdffd",date.get(position).toString());
-//        if(Objects.equals(todayString, date.get(position))){
-//            holder.title.setText(String.valueOf(title.get(position)));
-//            holder.count.setText(String.valueOf(count.get(position)));
-////                Log.e("dateformated",String.valueOf(date.get(position)));
-//            holder.date.setText(String.valueOf(date.get(position)));
-//            holder.type.setText(String.valueOf(type.get(position)));
-//        }
+
 
             holder.title.setText(String.valueOf(title.get(position)));
             holder.count.setText(String.valueOf(count.get(position)));
@@ -104,8 +163,9 @@ public class dataAdapter extends RecyclerView.Adapter<dataAdapter.MyViewHolder> 
 
     class MyViewHolder extends RecyclerView.ViewHolder {
 
-        TextView title,count,date,type,passtime;
+        TextView title,count,date,type,passtime,total;
         LinearLayout datslayout;
+        ConstraintLayout headlayout;
         MyViewHolder(@NonNull View itemView) {
             super(itemView);
             title = itemView.findViewById(R.id.Name);
@@ -113,11 +173,26 @@ public class dataAdapter extends RecyclerView.Adapter<dataAdapter.MyViewHolder> 
             date = itemView.findViewById(R.id.dtext);
             type = itemView.findViewById(R.id.restype);
             passtime = itemView.findViewById(R.id.passtime);
+            total = itemView.findViewById(R.id.total);
             datslayout = itemView.findViewById(R.id.datslayout);
-
+            headlayout = itemView.findViewById(R.id.headlayout);
 
         }
-
+//        public  void changes(int pos,int today){
+//            if (pos >= 0 && pos < getItemCount()) {
+//                MyViewHolder holder = (MyViewHolder) recyclerView.findViewHolderForAdapterPosition(pos);
+//                Log.e("resdrvsretgsdf", String.valueOf(holder));
+//                if (holder != null) {
+////                    holder.total.setText(Integer.toString(today));
+//                }
+//            }
+//        }
+        @SuppressLint("SetTextI18n")
+        private void changes(MyViewHolder holder, int position,int todays) {
+//            int updatedTotal = updatedTotals.get(position);
+//            Log.e("resdrvsretgsdf", String.valueOf(updatedTotal));
+            holder.total.setText(Integer.toString(todays));
+        }
 
 
     }

@@ -72,7 +72,7 @@ public class datedata extends SQLiteOpenHelper {
 
 
     public Cursor readAllData_inorder(String value){
-        String query = "SELECT * FROM " + TABLE_NAME+ " ORDER BY substr(date, 5) "+value;
+        String query = "SELECT * FROM " + TABLE_NAME+ " ORDER BY rowid "+value;
         SQLiteDatabase db = this.getReadableDatabase();
 
         Cursor cursor = null;
@@ -82,8 +82,30 @@ public class datedata extends SQLiteOpenHelper {
         return cursor;
     }
 
+//    public Cursor readAllData_inorder(String value){
+//        String query = "SELECT * FROM " + TABLE_NAME+ " ORDER BY substr(date, 5) "+value;
+//        SQLiteDatabase db = this.getReadableDatabase();
+//
+//        Cursor cursor = null;
+//        if(db != null){
+//            cursor = db.rawQuery(query, null);
+//        }
+//        return cursor;
+//    }
+
+//    public Cursor readAllData(){
+//        String query = "SELECT * FROM " + TABLE_NAME+ " ORDER BY substr(date, 5)DESC";
+//        SQLiteDatabase db = this.getReadableDatabase();
+//
+//        Cursor cursor = null;
+//        if(db != null){
+//            cursor = db.rawQuery(query, null);
+//        }
+//        return cursor;
+//    }
+
     public Cursor readAllData(){
-        String query = "SELECT * FROM " + TABLE_NAME+ " ORDER BY substr(date, 5)DESC";
+        String query = "SELECT * FROM " + TABLE_NAME+ " ORDER BY rowid DESC";
         SQLiteDatabase db = this.getReadableDatabase();
 
         Cursor cursor = null;

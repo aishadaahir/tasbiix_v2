@@ -1,5 +1,6 @@
 package com.example.android.version2;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
@@ -14,11 +15,14 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.widget.PopupMenu;
 import android.widget.SearchView;
+
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
+import java.util.Objects;
 
 public class datalist extends BaseActivity {
 
@@ -157,6 +161,10 @@ public class datalist extends BaseActivity {
         calendar.add(Calendar.YEAR, -1);
         Date lastYear = calendar.getTime();
 
+        // Get last month's date
+        calendar.add(Calendar.DAY_OF_YEAR, -1);
+        Date longer = calendar.getTime();
+
         // Format the dates as strings
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
         String todayString = sdf.format(today);
@@ -167,6 +175,7 @@ public class datalist extends BaseActivity {
         String lastMonthString = sdf.format(lastMonth);
         String beforelastMonthString = sdf.format(beforelastMonth);
         String lastYearString = sdf.format(lastYear);
+        String longerString = sdf.format(longer);
 
         // Print the dates
         Log.e("Today: ", todayString);
@@ -177,9 +186,162 @@ public class datalist extends BaseActivity {
         Log.e("Last Month: ",lastMonthString);
         Log.e("beforeLast Month: ",beforelastMonthString);
         Log.e("Last Year: ",lastYearString);
+        Log.e("Longer: ",longerString);
+        int i = 0;
+        int countlastmonth=0;
+        int positionlastmonth=-1;
+        int countlastyear=0;
+        int positionlastyear=-1;
+        int countlastweek=0;
+        int positionlastweek=-1;
+        int countlasttoday=0;
+        int positionlasttoday=-1;
+        int countlastyesterday=0;
+        int positionlastyesterday=-1;
+        int countlonger=0;
+        int positionlonger=-1;
+        while(i<date.size()){
+            SimpleDateFormat inputFormat = new SimpleDateFormat("EEE,dd/MM/yyyy HH:mm:ss", Locale.ENGLISH);
+            SimpleDateFormat outputFormat = new SimpleDateFormat("yyyy-MM-dd");
+            SimpleDateFormat Format = new SimpleDateFormat("yyyy-MM-dd");
 
-        Adapter = new dataAdapter(datalist.this,title,count,date,type,todayString);
+            try {
+                Date dates = inputFormat.parse(String.valueOf(date.get(i)));
+                assert dates != null;
+                String formattedDate = outputFormat.format(dates);
+                Date datecompare = Format.parse(formattedDate);
+                Date before = Format.parse(beforelastWeekString);
+                Date after = Format.parse(lastMonthString);
+
+//                Log.e("dateoutside", formattedDate);
+                if (datecompare.after(after) && datecompare.before(before) || datecompare.equals(after)|| datecompare.equals(before)) {
+//                    Log.e("dateoutside", formattedDate);
+//                    Log.e("dateoutside", count.get(i));
+                    if(positionlastmonth==-1){
+                        positionlastmonth=i;
+                    }
+                    countlastmonth+= Integer.valueOf(count.get(i));
+//                    Log.e("dateoutside", String.valueOf(countlastmonth));
+                }else if (datecompare.after(Format.parse(lastYearString)) && datecompare.before(Format.parse(beforelastMonthString)) || datecompare.equals(Format.parse(beforelastMonthString))|| datecompare.equals(Format.parse(lastYearString))) {
+//                    Log.e("dateoutside", formattedDate);
+//                    Log.e("dateoutside", count.get(i));
+                    if(positionlastyear==-1){
+                        positionlastyear=i;
+                    }
+                    countlastyear+= Integer.valueOf(count.get(i));
+//                    Log.e("dateoutside", String.valueOf(countlastyear));
+                } else if (datecompare.after(Format.parse(lastWeekString)) && datecompare.before(Format.parse(beforeyesterdayString)) || datecompare.equals(Format.parse(beforeyesterdayString))|| datecompare.equals(Format.parse(lastWeekString))) {
+//                    Log.e("dateoutside", formattedDate);
+//                    Log.e("dateoutside", count.get(i));
+                    if(positionlastweek==-1){
+                        positionlastweek=i;
+                    }
+                    countlastweek+= Integer.valueOf(count.get(i));
+//                    Log.e("dateoutside", String.valueOf(countlastweek));
+                } else if (datecompare.equals(Format.parse(todayString))) {
+//                    Log.e("dateoutside", formattedDate);
+//                    Log.e("dateoutside", count.get(i));
+                    if(positionlasttoday==-1){
+                        positionlasttoday=i;
+                    }
+                    countlasttoday+= Integer.valueOf(count.get(i));
+//                    Log.e("dateoutside", String.valueOf(countlasttoday));
+                }else if (datecompare.equals(Format.parse(yesterdayString))) {
+//                    Log.e("dateoutside", formattedDate);
+//                    Log.e("dateoutside", count.get(i));
+                    if(positionlastyesterday==-1){
+                        positionlastyesterday=i;
+                    }
+                    countlastyesterday+= Integer.valueOf(count.get(i));
+//                    Log.e("dateoutside", String.valueOf(countlastyesterday));
+                } else if (datecompare.after(Format.parse(longerString))) {
+//                    Log.e("dateoutside", formattedDate);
+//                    Log.e("dateoutside", count.get(i));
+                    if(positionlonger==-1){
+                        positionlonger=i;
+                    }
+                    countlonger+= Integer.valueOf(count.get(i));
+//                    Log.e("dateoutside", String.valueOf(countlonger));
+                } else {
+//                    Log.e("dateoutside", "outside if");
+                }
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+//            SimpleDateFormat inputFormat = new SimpleDateFormat("EEE,dd/MM/yyyy HH:mm:ss", Locale.ENGLISH);
+//            @SuppressLint("SimpleDateFormat") SimpleDateFormat outputFormat = new SimpleDateFormat("yyyy-MM-dd");
+//
+//            try {
+//                Date dates = inputFormat.parse(String.valueOf(date.get(i)));
+//                assert dates != null;
+//                String formattedDate = outputFormat.format(dates);
+//                SimpleDateFormat Format = new SimpleDateFormat("yyyy-MM-dd");
+//                Date datecompare= Format.parse(formattedDate);
+//                Date before= Format.parse(lastMonthString);
+//                Date after= Format.parse(beforelastWeekString);
+//                Log.e("dateoutside",formattedDate);
+//                Log.e("date", String.valueOf(datecompare));
+//                if(datecompare.after(after) && datecompare.before(before)){
+////                    Log.e("dateoutside"," "+i+ ""+formattedDate);
+//                    Log.e("dateoutside","insideif");
+//                }
+////            System.out.println("Formatted Date: " + formattedDate);
+////                Log.e("dateformated",formattedDate);
+//////            holder.passtime.setText(formattedDate);
+////                if(Objects.equals(todayString, formattedDate)){
+////                    if(pos==-1){
+////                        pos=position;
+////                        hold=holder;
+////                    }
+////                    if(position!=pos){
+////                        holder.headlayout.setVisibility(View.GONE);
+////                    }
+////                    today=today+ Integer.parseInt((String) count.get(position));
+////                    holder.passtime.setText(formattedDate);
+////                    holder.changes(hold, position,today);
+////                }
+////                else if (Objects.equals(yesterday, formattedDate)) {
+////                    if(posy==-1){
+////                        posy=position;
+////                        hold2=holder;
+////                    }
+////                    if(position!=posy){
+////                        holder.headlayout.setVisibility(View.GONE);
+////                    }
+////                    yester=yester+ Integer.parseInt((String) count.get(position));
+////                    holder.passtime.setText(formattedDate);
+////                    holder.changes(hold2, position,yester);
+////                }
+////
+////                else{
+////                    Log.e("resdrvsretgsdf", String.valueOf(pos));
+////                    Log.e("resdrvsretgsdf", String.valueOf(today));
+////
+//////                holder.changes(pos,today);
+//////                holder.total.get(0).setText(today);
+////                    holder.headlayout.setVisibility(View.GONE);
+////                }
+//
+//            } catch (ParseException e) {
+//                e.printStackTrace();
+//            }
+//            Log.e("dateoutside",date.get(i));
+            i++;
+        }
+
+        Log.e("month",""+countlastmonth+"  "+positionlastmonth);
+        Log.e("year", ""+countlastyear+"  "+positionlastyear);
+        Log.e("week", String.valueOf(countlastweek));
+        Log.e("today", String.valueOf(countlasttoday));
+        Log.e("yesterday", String.valueOf(countlastyesterday));
+        Log.e("longer", ""+countlonger+"  "+positionlonger);
+        Adapter = new dataAdapter(datalist.this,title,count,date,type,todayString,yesterdayString,countlastmonth,positionlastmonth
+                ,countlastyear,positionlastyear,countlastweek,positionlastweek,countlasttoday,positionlasttoday,countlastyesterday,positionlastyesterday,countlonger,positionlonger);
         recyclerView.setAdapter(Adapter);
+//        String newValue = "12" ;
+//        int updateIndex = 0;
+//        data.set(updateIndex, newValue);
+//        Adapter.notifyItemChanged(updateIndex);
         recyclerView.setLayoutManager(new LinearLayoutManager(datalist.this));
     }
 
