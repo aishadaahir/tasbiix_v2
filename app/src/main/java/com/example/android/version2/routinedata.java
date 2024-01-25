@@ -38,20 +38,18 @@ public class routinedata extends SQLiteOpenHelper {
         contentValues.put(COL2, "1");
         contentValues.put(COL3, "لا إله الا الله");
 
-
-
         ContentValues contentValues2 = new ContentValues();
         contentValues2.put(COL1, "33");
         contentValues2.put(COL2, "1");
         contentValues2.put(COL3, "الله أكبر");
 
         ContentValues contentValues3 = new ContentValues();
-        contentValues3.put(COL1, "50");
-        contentValues3.put(COL2, "2");
+        contentValues3.put(COL1, "33");
+        contentValues3.put(COL2, "1");
         contentValues3.put(COL3, "سبحان الله");
 
         ContentValues contentValues4 = new ContentValues();
-        contentValues4.put(COL1, "99");
+        contentValues4.put(COL1, "33");
         contentValues4.put(COL2, "1");
         contentValues4.put(COL3, "استغفر الله");
 
