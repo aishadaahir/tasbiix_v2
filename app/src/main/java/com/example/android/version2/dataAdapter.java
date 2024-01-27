@@ -86,51 +86,50 @@ public class dataAdapter extends RecyclerView.Adapter<dataAdapter.MyViewHolder> 
             Date dates = inputFormat.parse(String.valueOf(date.get(position)));
             assert dates != null;
             String formattedDate = outputFormat.format(dates);
-//            System.out.println("Formatted Date: " + formattedDate);
             Log.e("dateformated",formattedDate);
             if(!String.valueOf(positionlastmonth).equals("-1")){
                 if(Objects.equals(positionlastmonth, position)){
-                    holder.total.setText(String.valueOf(countlastmonth));
-                    holder.passtime.setText(formattedDate);
+                    holder.total.setText("tasbiix: "+String.valueOf(countlastmonth));
+                    holder.passtime.setText("Last Month");
                     holder.headlayout.setVisibility(View.VISIBLE);
                 }
             }
             if(!String.valueOf(positionlastyear).equals("-1")){
                 if(Objects.equals(positionlastyear, position)){
-                    holder.total.setText(String.valueOf(countlastyear));
-                    holder.passtime.setText(formattedDate);
+                    holder.total.setText("tasbiix: "+String.valueOf(countlastyear));
+                    holder.passtime.setText("Last Year");
                     holder.headlayout.setVisibility(View.VISIBLE);
                 }
 
             }
             if(!String.valueOf(positionlastweek).equals("-1")){
                 if(Objects.equals(positionlastweek, position)){
-                    holder.total.setText(String.valueOf(countlastweek));
-                    holder.passtime.setText(formattedDate);
+                    holder.total.setText("tasbiix: "+String.valueOf(countlastweek));
+                    holder.passtime.setText("Last Week");
                     holder.headlayout.setVisibility(View.VISIBLE);
                 }
 
             }
             if(!String.valueOf(positionlasttoday).equals("-1")){
                 if(Objects.equals(positionlasttoday, position)){
-                    holder.total.setText(String.valueOf(countlasttoday));
-                    holder.passtime.setText(formattedDate);
+                    holder.total.setText("tasbiix: "+String.valueOf(countlasttoday));
+                    holder.passtime.setText("Today");
                     holder.headlayout.setVisibility(View.VISIBLE);
                 }
 
             }
             if(!String.valueOf(positionlastyesterday).equals("-1")){
                 if(Objects.equals(positionlastyesterday, position)){
-                    holder.total.setText(String.valueOf(countlastyesterday));
-                    holder.passtime.setText(formattedDate);
+                    holder.total.setText("tasbiix: "+String.valueOf(countlastyesterday));
+                    holder.passtime.setText("Yesterday");
                     holder.headlayout.setVisibility(View.VISIBLE);
                 }
 
             }
             if(!String.valueOf(positionlonger).equals("-1")){
                 if(Objects.equals(positionlonger, position)){
-                    holder.total.setText(String.valueOf(countlonger));
-                    holder.passtime.setText(formattedDate);
+                    holder.total.setText("tasbiix: "+String.valueOf(countlonger));
+                    holder.passtime.setText("Longer");
                     holder.headlayout.setVisibility(View.VISIBLE);
                 }
 
